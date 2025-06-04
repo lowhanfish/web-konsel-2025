@@ -2,7 +2,7 @@ import React from 'react'
 
 function homeRecentAnounce() {
   return (
-    <div>
+    <div className='bgx bg-profile'>
       <h1>Home Pengumuman</h1>
     </div>
   )

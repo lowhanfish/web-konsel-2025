@@ -10,7 +10,7 @@ import HomeContact from './homeContact';
 
 function home() {
   return (
-    <div className='container mt-5'>
+    <div className='fulll'>
         <HomeHeader/>
         <HomeProfile/>
         <HomeRecentNews/>
