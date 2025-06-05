@@ -1,0 +1,99 @@
+.h_yellow {
+    color: #FEE117;
+}
+
+.h_white {
+    color: #FFFFFF;
+}
+
+.h_bold {
+    font-weight: 700;
+}
+
+
+.Josefin-slab {
+    font-family: "Josefin Slab", serif;
+    /* font-optical-sizing: auto; */
+    /* font-style: normal; */
+
+}
+
+.imprima-regular {
+    font-family: "Imprima", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.h_child {
+    font-weight: 200;
+}
+
+.h_32 {
+    font-size: 32px;
+}
+
+
+.h_18 {
+    font-size: 18px;
+}
+
+.h_19 {
+    font-size: 19px;
+}
+
+.h_20 {
+    font-size: 20px;
+}
+
+.h_21 {
+    font-size: 21px;
+}
+
+.h_22 {
+    font-size: 22px;
+}
+
+.h_23 {
+    font-size: 23px;
+}
+
+.h_24 {
+    font-size: 24px;
+}
+
+.h_25 {
+    font-size: 25px;
+}
+
+.h_26 {
+    font-size: 26px;
+}
+
+.h_27 {
+    font-size: 27px;
+}
+
+.h_28 {
+    font-size: 28px;
+}
+
+.h_29 {
+    font-size: 29px;
+}
+
+.h_x {
+    font-size: 18px;
+}
+
+
+
+.h_sambung {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+
+a:link {
+    text-decoration: none;
+}
