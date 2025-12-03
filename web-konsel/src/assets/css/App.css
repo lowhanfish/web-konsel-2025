@@ -1,6 +1,6 @@
 html,
 body {
-    background-color: #e0c007;
+    background-color: #ffffff;
 }
 
 
@@ -13,7 +13,13 @@ body {
 }
 
 .bg-news {
+    background-color: white;
     background-image: url('/images/bg_news.png');
+    /* z-index: -1; */
+    /* opacity: 0.5; */
+
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -63,7 +69,29 @@ body {
     /* align-items: stretch; */
 }
 
+.bgx3 {
 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    /* padding-top: 20%;  */
+    /* padding-top: 28.12%;  */
+    /* padding-top: 42.85%;  */
+    /* padding-top: 5%; */
+    /* padding-top: 56.25%;  */
+    /* padding-top: 75%;  */
+    /* 16:9 aspect ratio (9 / 16 * 100) */
+    position: relative;
+    /* background-color: #212121; */
+    /* z-index: -1; */
+
+    display: flex;
+    flex-direction: column;
+    /* flex: 1; */
+    /* height: 100%; */
+    /* align-items: stretch; */
+}
 
 .header-container {
     display: flex;
