@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Lato, Roboto } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+
+// Load fonts at module scope (required by next/font)
+const lato = Lato({ variable: "--font-lato", subsets: ["latin"], weight: ["400", "700"] });
+const roboto = Roboto({ variable: "--font-roboto", subsets: ["latin"], weight: ["400", "700"] });
 
 
 // RUJUKAN : https://www.shell.com/investors/why-invest-in-shell.html
@@ -18,10 +22,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="light">
-      <body
-        className="antialiased bg-background text-foreground"
-      >
-        <Navbar mode="light" />
+      <body className={`${roboto.variable} antialiased bg-background text-foreground`}>
+        <Navbar />
         {children}
       </body>
     </html>
