@@ -21,27 +21,9 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const setInitialColorScheme = `(function() {
-    try {
-      var theme = localStorage.getItem('theme');
-      var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-      if (theme === 'dark' || (theme === null && prefersDark)) {
-        document.documentElement.classList.add('dark');
-        document.documentElement.classList.remove('light');
-      } else {
-        document.documentElement.classList.add('light');
-        document.documentElement.classList.remove('dark');
-      }
-    } catch (e) {
-      // ignore
-    }
-  })();`;
-
   return (
-    <html lang="en">
+    <html lang="en" className="light">
       <body className={`${poppins.variable} antialiased bg-background text-foreground`}>
-        {/* Inline script that runs before React hydration to avoid server/client mismatch for theme */}
-        <script dangerouslySetInnerHTML={{ __html: setInitialColorScheme }} />
         <Navbar />
         {children}
       </body>
