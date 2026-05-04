@@ -237,17 +237,29 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const desktopMenu = useMemo(() => menu, []);
 
-  // Sync theme with localStorage after mount (client-only)
+  // Improved theme auto-detect with listener
   useEffect(() => {
     if (typeof window === "undefined") return;
 
     const saved = localStorage.getItem("theme") as "light" | "dark" | null;
-    const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const initialTheme = saved || (systemPrefersDark ? "dark" : "light");
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    const initialTheme = saved || (mediaQuery.matches ? "dark" : "light");
 
     setTheme(initialTheme);
     document.documentElement.classList.remove("light", "dark");
     document.documentElement.classList.add(initialTheme);
+
+    const handleChange = (e: MediaQueryListEvent) => {
+      if (!saved) {
+        const newTheme = e.matches ? "dark" : "light";
+        setTheme(newTheme);
+        document.documentElement.classList.remove("light", "dark");
+        document.documentElement.classList.add(newTheme);
+      }
+    };
+
+    mediaQuery.addEventListener("change", handleChange);
+    return () => mediaQuery.removeEventListener("change", handleChange);
   }, []);
 
   useEffect(() => {

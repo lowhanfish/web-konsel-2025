@@ -34,7 +34,7 @@ export default function FotoClient() {
     const current = idx !== null ? filtered[idx] : null;
 
     return (
-        <section className="space-y-6">
+        <section className="space-y-6 animate-fade-in-up">
             <PageHeader eyebrow="Galeri" title="Galeri Foto" description="Klik foto untuk membuka modal interaktif dengan navigasi next/prev." />
             <input
                 value={q}
@@ -44,17 +44,25 @@ export default function FotoClient() {
                     setIdx(null);
                 }}
                 placeholder="Cari foto..."
-                className="w-full rounded-2xl border-[--border] bg-transparent px-4 py-3 outline-none"
+                className="w-full rounded-3xl border-border bg-card/50 px-6 py-4 outline-none ring-accent/50 focus:ring-2"
             />
-            <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {data.map((item, i) => {
                     const absoluteIndex = (page - 1) * per + i;
                     return (
-                        <button key={item.title} onClick={() => setIdx(absoluteIndex)} className="overflow-hidden rounded-2xl glass neon-hover text-left">
-                            <Image src={item.src} alt={item.title} width={1200} height={800} className="h-44 w-full object-cover" />
-                            <div className="p-4">
-                                <p className="text-xs uppercase tracking-[0.2em] text-[--muted]">{item.category}</p>
-                                <h3 className="mt-2 font-medium">{item.title}</h3>
+                        <button key={item.title} onClick={() => setIdx(absoluteIndex)} className="group overflow-hidden rounded-3xl glass neon-hover text-left hover:shadow-2xl transition-all duration-500">
+                            <div className="relative overflow-hidden">
+                                <Image
+                                    src={item.src}
+                                    alt={item.title}
+                                    width={1200}
+                                    height={800}
+                                    className="h-48 w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                />
+                            </div>
+                            <div className="p-6">
+                                <p className="text-xs uppercase tracking-widest font-medium text-muted">{item.category}</p>
+                                <h3 className="mt-3 font-semibold text-foreground line-clamp-2">{item.title}</h3>
                             </div>
                         </button>
                     );

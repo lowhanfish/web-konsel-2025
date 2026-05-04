@@ -31,10 +31,18 @@ export default function Footer() {
         </div>
         <div>
           <p className="mb-4 text-xs uppercase tracking-[0.3em] text-[--muted]">Sosial & Layanan</p>
-          <div className="grid gap-3">
-            <Link href="/berita" className="rounded-2xl border border-[--border] px-4 py-3 text-sm neon-hover">Berita Daerah</Link>
-            <Link href="/gallery/foto" className="rounded-2xl border border-[--border] px-4 py-3 text-sm neon-hover">Galeri Foto</Link>
-            <Link href="/data-informasi/ipkd" className="rounded-2xl border border-[--border] px-4 py-3 text-sm neon-hover">IPKD</Link>
+          <div className="grid gap-4">
+            <Link href="/berita" className="group rounded-3xl border border-border px-6 py-4 text-base neon-hover hover:shadow-xl transition-all">Berita Daerah</Link>
+            <Link href="/gallery/foto" className="group rounded-3xl border border-border px-6 py-4 text-base neon-hover hover:shadow-xl transition-all">Galeri Foto</Link>
+            <Link href="/data-informasi/ipkd" className="group rounded-3xl border border-border px-6 py-4 text-base neon-hover hover:shadow-xl transition-all">IPKD</Link>
+            <div className="mt-6 pt-6 border-t border-border rounded-3xl p-6 bg-card/30">
+              <h4 className="font-semibold mb-3">Newsletter</h4>
+              <p className="text-sm text-muted mb-4">Dapatkan update terbaru dari Pemkab Konawe Selatan</p>
+              <div className="flex gap-2">
+                <input placeholder="Email Anda" className="flex-1 rounded-2xl border-border px-4 py-3 bg-transparent focus:ring-accent/50 focus:ring-2" />
+                <button className="rounded-2xl bg-primary text-primary-foreground px-6 py-3 font-medium neon-hover whitespace-nowrap">Berlangganan</button>
+              </div>
+            </div>
           </div>
           <div className="mt-4 rounded-2xl border border-[--border] p-4 text-sm text-[--muted]">
             <p className="font-medium text-[--fg]">Jam layanan:</p>

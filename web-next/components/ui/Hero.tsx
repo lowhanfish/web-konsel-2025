@@ -72,12 +72,12 @@ export default function Hero({
           {description ? <p className="max-w-3xl text-white/80">{description}</p> : null}
           <div className="flex flex-wrap gap-3">
             {primaryHref && primaryLabel ? (
-              <Link href={primaryHref} className="rounded-full bg-[--neon] px-5 py-3 font-semibold text-black neon-hover">
-                {primaryLabel}
+              <Link href={primaryHref} className="group rounded-3xl bg-gradient-to-r from-accent to-neon px-8 py-4 font-bold text-black shadow-2xl neon-hover hover:shadow-glow-lg hover:scale-105 transition-all duration-300">
+                <span className="bg-gradient-to-r from-black/20 to-transparent bg-clip-text pb-px -mb-px">{primaryLabel}</span>
               </Link>
             ) : null}
             {secondaryHref && secondaryLabel ? (
-              <Link href={secondaryHref} className="rounded-full border border-[--border] px-5 py-3 neon-hover">
+              <Link href={secondaryHref} className="rounded-3xl border-2 border-border/50 bg-card/30 px-8 py-4 backdrop-blur-sm neon-hover hover:border-accent hover:shadow-xl hover:scale-[1.02] transition-all duration-300">
                 {secondaryLabel}
               </Link>
             ) : null}

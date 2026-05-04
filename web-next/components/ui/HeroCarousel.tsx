@@ -85,16 +85,16 @@ export default function HeroCarousel({
               key={slide.title}
               type="button"
               onClick={() => setIndex(slideIndex)}
-              className={`overflow-hidden rounded-3xl border text-left transition duration-300 ${slideIndex === index ? "border-[--neon] shadow-[0_0_0_1px_rgba(245,224,29,.55)]" : "border-[--border]"
+              className={`group overflow-hidden rounded-3xl border-2 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-accent/25 ${slideIndex === index ? "border-accent ring-4 ring-accent/30 shadow-glow-lg" : "border-border/50 hover:border-accent/70"
                 }`}
             >
-              <div className="flex items-center gap-3 p-3">
-                <div className="relative h-16 w-20 shrink-0 overflow-hidden rounded-2xl">
-                  <Image src={slide.image.src} alt={slide.image.alt} fill sizes="80px" className="object-cover" />
+              <div className="flex items-center gap-4 p-6">
+                <div className="relative h-20 w-28 shrink-0 overflow-hidden rounded-3xl group-hover:scale-110 transition-transform duration-500">
+                  <Image src={slide.image.src} alt={slide.image.alt} fill sizes="112px" className="object-cover" />
                 </div>
-                <div className="min-w-0">
-                  {slide.eyebrow ? <p className="text-[10px] uppercase tracking-[0.28em] text-[--muted]">{slide.eyebrow}</p> : null}
-                  <p className="mt-1 truncate text-sm font-medium">{slide.title}</p>
+                <div className="min-w-0 flex-1">
+                  {slide.eyebrow ? <p className="text-xs uppercase tracking-widest font-medium text-muted">{slide.eyebrow}</p> : null}
+                  <p className="mt-2 truncate text-base font-bold text-foreground line-clamp-2">{slide.title}</p>
                 </div>
               </div>
             </button>
