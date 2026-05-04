@@ -55,6 +55,7 @@ export default function HeroCarousel({
                 sizes="(min-width: 1024px) 60vw, 100vw"
                 className={`object-cover transition duration-[1400ms] ease-out ${slideIndex === index ? "scale-105" : "scale-110"}`}
                 priority={slideIndex === 0}
+                loading="eager"
               />
               <div className="absolute inset-0 bg-linear-to-r from-black/80 via-black/60 to-black/25" />
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(245,224,29,0.16),transparent_35%)]" />
@@ -90,7 +91,7 @@ export default function HeroCarousel({
             >
               <div className="flex items-center gap-4 p-6">
                 <div className="relative h-20 w-28 shrink-0 overflow-hidden rounded-3xl group-hover:scale-110 transition-transform duration-500">
-                  <Image src={slide.image.src} alt={slide.image.alt} fill sizes="112px" className="object-cover" />
+                  <Image src={slide.image.src} alt={slide.image.alt} fill sizes="112px" className="object-cover" loading="eager" />
                 </div>
                 <div className="min-w-0 flex-1">
                   {slide.eyebrow ? <p className="text-xs uppercase tracking-widest font-medium text-muted">{slide.eyebrow}</p> : null}
