@@ -37,15 +37,15 @@ export default function PaginatedGrid({
             setPage(1);
           }}
           placeholder="Cari..."
-          className="w-full rounded-2xl border border-[color:var(--border)] bg-transparent px-4 py-3 outline-none md:w-80"
+          className="w-full rounded-2xl border border-[--border] bg-transparent px-4 py-3 outline-none md:w-80"
         />
       </div>
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         {data.map((item) => (
           <article key={item.title} className="glass rounded-2xl p-5 neon-hover">
             <h3 className="font-semibold">{item.title}</h3>
-            {item.meta ? <p className="mt-2 text-xs uppercase tracking-[0.2em] text-[color:var(--muted)]">{item.meta}</p> : null}
-            {item.description ? <p className="mt-3 text-sm text-[color:var(--muted)]">{item.description}</p> : null}
+            {item.meta ? <p className="mt-2 text-xs uppercase tracking-[0.2em] text-[--muted]">{item.meta}</p> : null}
+            {item.description ? <p className="mt-3 text-sm text-[--muted]">{item.description}</p> : null}
           </article>
         ))}
       </div>
@@ -54,9 +54,8 @@ export default function PaginatedGrid({
           <button
             key={i}
             onClick={() => setPage(i + 1)}
-            className={`rounded-full border px-4 py-2 text-sm neon-hover ${
-              page === i + 1 ? "bg-[color:var(--neon)] border-transparent text-black" : "border-[color:var(--border)]"
-            }`}
+            className={`rounded-full border px-4 py-2 text-sm neon-hover ${page === i + 1 ? "bg-[--neon] border-transparent text-black" : "border-[--border]"
+              }`}
           >
             {i + 1}
           </button>

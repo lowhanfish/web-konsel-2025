@@ -51,7 +51,7 @@ function MenuDropdown({
         {item.title}
       </Link>
       {item.description ? (
-        <p className="px-3 pb-2 text-xs text-[color:var(--muted)]">{item.description}</p>
+        <p className="px-3 pb-2 text-xs text-[--muted]">{item.description}</p>
       ) : null}
       {item.children?.length ? (
         <div className="mt-2 space-y-1 border-t border-white/10 pt-2">
@@ -61,9 +61,8 @@ function MenuDropdown({
                 <button
                   type="button"
                   onClick={() => setOpenChild((value) => !value)}
-                  className={`flex w-full items-center justify-between rounded-xl px-3 py-2 text-left text-sm neon-hover ${
-                    pathname === child.href || pathname.startsWith(`${child.href}/`) ? "bg-white/12" : ""
-                  }`}
+                  className={`flex w-full items-center justify-between rounded-xl px-3 py-2 text-left text-sm neon-hover ${pathname === child.href || pathname.startsWith(`${child.href}/`) ? "bg-white/12" : ""
+                    }`}
                 >
                   <span className="flex items-center gap-2">
                     <span className="opacity-80">{submenuIcons[child.title] ?? null}</span>
@@ -77,9 +76,8 @@ function MenuDropdown({
                   target="_blank"
                   rel="noreferrer"
                   onClick={closeAll}
-                  className={`flex items-center gap-2 rounded-xl px-3 py-2 text-sm neon-hover ${
-                    pathname === child.href ? "bg-white/12" : ""
-                  }`}
+                  className={`flex items-center gap-2 rounded-xl px-3 py-2 text-sm neon-hover ${pathname === child.href ? "bg-white/12" : ""
+                    }`}
                 >
                   <span className="opacity-80">{submenuIcons[child.title] ?? null}</span>
                   {child.title}
@@ -88,16 +86,15 @@ function MenuDropdown({
                 <Link
                   href={child.href}
                   onClick={closeAll}
-                  className={`flex items-center gap-2 rounded-xl px-3 py-2 text-sm neon-hover ${
-                    pathname === child.href || pathname.startsWith(`${child.href}/`) ? "bg-white/12" : ""
-                  }`}
+                  className={`flex items-center gap-2 rounded-xl px-3 py-2 text-sm neon-hover ${pathname === child.href || pathname.startsWith(`${child.href}/`) ? "bg-white/12" : ""
+                    }`}
                 >
                   <span className="opacity-80">{submenuIcons[child.title] ?? null}</span>
                   {child.title}
                 </Link>
               )}
               {child.children?.length && openChild ? (
-                <div className="ml-3 space-y-1 border-l border-[color:var(--border)] pl-3">
+                <div className="ml-3 space-y-1 border-l border-[--border] pl-3">
                   {child.children.map((grand) =>
                     grand.external ? (
                       <a
@@ -129,9 +126,11 @@ function MenuDropdown({
 function MobileMenu({
   open,
   closeAll,
+  pathname,
 }: {
   open: boolean;
   closeAll: () => void;
+  pathname: string;
 }) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
@@ -178,13 +177,12 @@ function MobileMenu({
                 <div className="space-y-1 border-t border-white/10 p-2">
                   {item.children.map((child) =>
                     child.children?.length ? (
-                      <div key={child.href} className="rounded-xl border border-[color:var(--border)]">
+                      <div key={child.href} className="rounded-xl border border-[--border]">
                         <button
                           type="button"
                           onClick={() => setOpenIndex((value) => (value === index ? null : index))}
-                          className={`flex w-full items-center justify-between px-3 py-2 text-sm ${
-                            pathname === child.href || pathname.startsWith(`${child.href}/`) ? "bg-white/10" : ""
-                          }`}
+                          className={`flex w-full items-center justify-between px-3 py-2 text-sm ${pathname === child.href || pathname.startsWith(`${child.href}/`) ? "bg-white/10" : ""
+                            }`}
                         >
                           <span className="flex items-center gap-2">
                             <span className="opacity-80">{submenuIcons[child.title] ?? null}</span>
@@ -192,7 +190,7 @@ function MobileMenu({
                           </span>
                           <MdKeyboardArrowDown />
                         </button>
-                        <div className="space-y-1 border-t border-[color:var(--border)] p-2">
+                        <div className="space-y-1 border-t border-[--border] p-2">
                           {child.children.map((grand) =>
                             grand.external ? (
                               <a key={grand.href} href={grand.href} target="_blank" rel="noreferrer" onClick={closeAll} className="block rounded-lg px-3 py-2 text-xs neon-hover">
@@ -203,9 +201,8 @@ function MobileMenu({
                                 key={grand.href}
                                 href={grand.href}
                                 onClick={closeAll}
-                                className={`block rounded-lg px-3 py-2 text-xs neon-hover ${
-                                  pathname === grand.href ? "bg-white/10" : ""
-                                }`}
+                                className={`block rounded-lg px-3 py-2 text-xs neon-hover ${pathname === grand.href ? "bg-white/10" : ""
+                                  }`}
                               >
                                 {grand.title}
                               </Link>
@@ -235,17 +232,26 @@ function MobileMenu({
 
 export default function Navbar() {
   const pathname = usePathname();
-  const [theme, setTheme] = useState<"light" | "dark">(() => {
-    if (typeof window === "undefined") return "light";
-    const saved = localStorage.getItem("theme") as "light" | "dark" | null;
-    if (saved) return saved;
-    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-  });
+  const [theme, setTheme] = useState<"light" | "dark">("light");
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const desktopMenu = useMemo(() => menu, []);
 
+  // Sync theme with localStorage after mount (client-only)
   useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const saved = localStorage.getItem("theme") as "light" | "dark" | null;
+    const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const initialTheme = saved || (systemPrefersDark ? "dark" : "light");
+
+    setTheme(initialTheme);
+    document.documentElement.classList.remove("light", "dark");
+    document.documentElement.classList.add(initialTheme);
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
     document.documentElement.classList.remove("light", "dark");
     document.documentElement.classList.add(theme);
     localStorage.setItem("theme", theme);
@@ -282,9 +288,8 @@ export default function Navbar() {
       <nav className="mx-auto flex max-w-7xl items-center gap-3 px-4 py-3">
         <Link
           href="/"
-          className={`rounded-2xl border px-4 py-2 font-semibold tracking-[0.18em] neon-hover ${
-            theme === "dark" ? "border-white/10 bg-black/30 text-white" : "border-slate-200 bg-white text-slate-900"
-          }`}
+          className={`rounded-2xl border px-4 py-2 font-semibold tracking-[0.18em] neon-hover ${theme === "dark" ? "border-white/10 bg-black/30 text-white" : "border-slate-200 bg-white text-slate-900"
+            }`}
         >
           KONSEL
         </Link>
@@ -296,13 +301,12 @@ export default function Navbar() {
                 <button
                   type="button"
                   onClick={() => setOpenIndex((value) => (value === index ? null : index))}
-                  className={`flex h-11 items-center gap-1 rounded-2xl border px-3 text-sm font-medium leading-none transition neon-hover ${
-                    openIndex === index || pathname === item.href || pathname.startsWith(`${item.href}/`)
-                      ? theme === "dark"
-                        ? "border-[color:var(--neon)] bg-black/30 text-white"
-                        : "border-[color:var(--neon)] bg-white text-slate-900"
-                      : chipBase
-                  }`}
+                  className={`flex h-11 items-center gap-1 rounded-2xl border px-3 text-sm font-medium leading-none transition neon-hover ${openIndex === index || pathname === item.href || pathname.startsWith(`${item.href}/`)
+                    ? theme === "dark"
+                      ? "border-[--neon] bg-black/30 text-white"
+                      : "border-[--neon] bg-white text-slate-900"
+                    : chipBase
+                    }`}
                 >
                   <span className="text-[0.95em] opacity-85">{topIcons[item.title] ?? null}</span>
                   {item.title}
@@ -315,13 +319,12 @@ export default function Navbar() {
               ) : (
                 <Link
                   href={item.href}
-                  className={`flex h-11 items-center rounded-2xl border px-3 text-sm font-medium leading-none transition neon-hover ${
-                    pathname === item.href || pathname.startsWith(`${item.href}/`)
-                      ? theme === "dark"
-                        ? "border-[color:var(--neon)] bg-black/30 text-white"
-                        : "border-[color:var(--neon)] bg-white text-slate-900"
-                      : chipBase
-                  }`}
+                  className={`flex h-11 items-center rounded-2xl border px-3 text-sm font-medium leading-none transition neon-hover ${pathname === item.href || pathname.startsWith(`${item.href}/`)
+                    ? theme === "dark"
+                      ? "border-[--neon] bg-black/30 text-white"
+                      : "border-[--neon] bg-white text-slate-900"
+                    : chipBase
+                    }`}
                 >
                   <span className="mr-2 text-[0.95em] opacity-85">{topIcons[item.title] ?? null}</span>
                   {item.title}
@@ -340,9 +343,8 @@ export default function Navbar() {
           <button
             type="button"
             onClick={() => setTheme((value) => (value === "dark" ? "light" : "dark"))}
-            className={`rounded-2xl border px-4 py-2 text-sm neon-hover ${
-              theme === "dark" ? "border-white/10 bg-black/30 text-white" : "border-slate-200 bg-white text-slate-900"
-            }`}
+            className={`rounded-2xl border px-4 py-2 text-sm neon-hover ${theme === "dark" ? "border-white/10 bg-black/30 text-white" : "border-slate-200 bg-white text-slate-900"
+              }`}
             aria-label="toggle theme"
           >
             {theme === "dark" ? "Light Mode" : "Dark Mode"}
@@ -350,9 +352,8 @@ export default function Navbar() {
           <button
             type="button"
             onClick={() => setMobileOpen(true)}
-            className={`rounded-2xl border p-3 neon-hover lg:hidden ${
-              theme === "dark" ? "border-white/10 bg-black/30 text-white" : "border-slate-200 bg-white text-slate-900"
-            }`}
+            className={`rounded-2xl border p-3 neon-hover lg:hidden ${theme === "dark" ? "border-white/10 bg-black/30 text-white" : "border-slate-200 bg-white text-slate-900"
+              }`}
             aria-label="open menu"
           >
             <GiHamburgerMenu />
@@ -360,7 +361,7 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {mobileOpen ? <MobileMenu key="mobile-menu" open={mobileOpen} closeAll={closeAll} /> : null}
+      {mobileOpen ? <MobileMenu key="mobile-menu" open={mobileOpen} closeAll={closeAll} pathname={pathname} /> : null}
     </header>
   );
 }

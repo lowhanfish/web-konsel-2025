@@ -60,7 +60,7 @@ export default function Hero({
               priority
               style={{ transform: `scale(1.1) translateY(${offset * 0.55}px)`, transition: "transform 120ms linear" }}
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/78 via-black/55 to-black/25" />
+            <div className="absolute inset-0 bg-linear-to-r from-black/78 via-black/55 to-black/25" />
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(245,224,29,0.16),transparent_32%)]" />
           </>
         ) : (
@@ -72,12 +72,12 @@ export default function Hero({
           {description ? <p className="max-w-3xl text-white/80">{description}</p> : null}
           <div className="flex flex-wrap gap-3">
             {primaryHref && primaryLabel ? (
-              <Link href={primaryHref} className="rounded-full bg-[color:var(--neon)] px-5 py-3 font-semibold text-black neon-hover">
+              <Link href={primaryHref} className="rounded-full bg-[--neon] px-5 py-3 font-semibold text-black neon-hover">
                 {primaryLabel}
               </Link>
             ) : null}
             {secondaryHref && secondaryLabel ? (
-              <Link href={secondaryHref} className="rounded-full border border-[color:var(--border)] px-5 py-3 neon-hover">
+              <Link href={secondaryHref} className="rounded-full border border-[--border] px-5 py-3 neon-hover">
                 {secondaryLabel}
               </Link>
             ) : null}
@@ -98,11 +98,11 @@ export default function Hero({
               style={{ transform: `scale(1.06) translateY(${offset * -0.12}px)`, transition: "transform 120ms linear" }}
               priority
             />
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
+            <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/20 via-transparent to-transparent" />
           </div>
           {image.caption ? (
             <div className="p-4">
-              <p className="text-xs uppercase tracking-[0.2em] text-[color:var(--muted)]">{image.caption}</p>
+              <p className="text-xs uppercase tracking-[0.2em] text-[--muted]">{image.caption}</p>
             </div>
           ) : null}
         </Card>
@@ -110,3 +110,4 @@ export default function Hero({
     </div>
   );
 }
+

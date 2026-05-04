@@ -56,7 +56,7 @@ export default function DashboardPage() {
           >
             <div className="relative aspect-[4/5] overflow-hidden md:aspect-[3/4]">
               <Image src={leader.image} alt={leader.name} fill sizes="(min-width: 1024px) 14rem, (min-width: 768px) 14rem, 100vw" className="object-cover transition duration-500 ease-out group-hover:scale-[1.03]" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent transition duration-300 group-hover:from-black/15" />
+              <div className="absolute inset-0 bg-linear-to-t from-black/25 via-transparent to-transparent transition duration-300 group-hover:from-black/15" />
             </div>
             <div className="px-3 pb-3 pt-2 md:px-3 md:pb-3 md:pt-2">
               <p className="text-xs uppercase tracking-[0.18em] text-[color:var(--muted)]">{leader.role}</p>

@@ -59,9 +59,8 @@ export default function BeritaClient() {
                   setCategory(tag);
                   setPage(1);
                 }}
-                className={`rounded-full px-3 py-1 font-medium ${
-                  category === tag ? "bg-[color:var(--neon)] text-black" : "border border-[color:var(--border)]"
-                }`}
+                className={`rounded-full px-3 py-1 font-medium ${category === tag ? "bg-[--neon] text-black" : "border border-[--border]"
+                  }`}
               >
                 {tag}
               </button>
@@ -69,29 +68,27 @@ export default function BeritaClient() {
           </div>
         </div>
         <div className="glass rounded-3xl p-5 neon-hover">
-          <p className="text-xs uppercase tracking-[0.3em] text-[color:var(--muted)]">Highlight</p>
+          <p className="text-xs uppercase tracking-[0.3em] text-[--muted]">Highlight</p>
           <h2 className="mt-3 text-2xl font-semibold leading-tight">
             Informasi terbaru, visual kuat, dan susunan kartu yang lebih editorial.
           </h2>
-          <p className="mt-3 text-sm text-[color:var(--muted)]">
+          <p className="mt-3 text-sm text-[--muted]">
             Konten berita disusun agar terasa seperti portal resmi yang hidup, bukan daftar statis biasa.
           </p>
           <div className="mt-4 flex flex-wrap gap-2">
             <button
               type="button"
               onClick={() => setSort("baru")}
-              className={`inline-flex items-center gap-2 rounded-full border px-3 py-2 text-xs ${
-                sort === "baru" ? "bg-[color:var(--neon)] text-black border-transparent" : "border-[color:var(--border)]"
-              }`}
+              className={`inline-flex items-center gap-2 rounded-full border px-3 py-2 text-xs ${sort === "baru" ? "bg-[--neon] text-black border-transparent" : "border-[--border]"
+                }`}
             >
               <FaSortAmountDown /> Terbaru
             </button>
             <button
               type="button"
               onClick={() => setSort("lama")}
-              className={`inline-flex items-center gap-2 rounded-full border px-3 py-2 text-xs ${
-                sort === "lama" ? "bg-[color:var(--neon)] text-black border-transparent" : "border-[color:var(--border)]"
-              }`}
+              className={`inline-flex items-center gap-2 rounded-full border px-3 py-2 text-xs ${sort === "lama" ? "bg-[--neon] text-black border-transparent" : "border-[--border]"
+                }`}
             >
               <FaSortAmountUp /> Terdahulu
             </button>
@@ -106,37 +103,37 @@ export default function BeritaClient() {
           setPage(1);
         }}
         placeholder="Cari berita..."
-        className="w-full rounded-2xl border border-[color:var(--border)] bg-transparent px-4 py-3 outline-none"
+        className="w-full rounded-2xl border-[--border] bg-transparent px-4 py-3 outline-none"
       />
 
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         {data.map((item) => (
-            <article key={item.title} className="glass overflow-hidden rounded-3xl p-0 neon-hover">
-              <div className="relative">
+          <article key={item.title} className="glass overflow-hidden rounded-3xl p-0 neon-hover">
+            <div className="relative">
               <Image src={item.image} alt={item.title} width={1200} height={800} className="h-44 w-full object-cover" />
-                <div className="absolute left-4 top-4 rounded-full bg-black/65 px-3 py-1 text-[10px] uppercase tracking-[0.25em] text-white">
-                  {item.category}
-                </div>
+              <div className="absolute left-4 top-4 rounded-full bg-black/65 px-3 py-1 text-[10px] uppercase tracking-[0.25em] text-white">
+                {item.category}
+              </div>
             </div>
             <div className="p-5">
-              <div className="flex items-center gap-2 text-[11px] uppercase tracking-[0.25em] text-[color:var(--muted)]">
+              <div className="flex items-center gap-2 text-[11px] uppercase tracking-[0.25em] text-[--muted]">
                 <span>{item.publishedBy}</span>
                 <span>•</span>
                 <span>{item.publishedAt}</span>
               </div>
-            <h2
-              className="mt-3 text-lg font-semibold leading-snug"
-              title={item.title}
-              style={{
-                display: "-webkit-box",
-                WebkitLineClamp: 2,
-                WebkitBoxOrient: "vertical",
-                overflow: "hidden",
-              }}
-            >
-              {item.title}
-            </h2>
-            <p className="mt-2 text-sm text-[color:var(--muted)]">{item.summary}</p>
+              <h2
+                className="mt-3 text-lg font-semibold leading-snug"
+                title={item.title}
+                style={{
+                  display: "-webkit-box",
+                  WebkitLineClamp: 2,
+                  WebkitBoxOrient: "vertical",
+                  overflow: "hidden",
+                }}
+              >
+                {item.title}
+              </h2>
+              <p className="mt-2 text-sm text-[--muted]">{item.summary}</p>
             </div>
           </article>
         ))}
@@ -147,14 +144,13 @@ export default function BeritaClient() {
           <button
             key={i}
             onClick={() => setPage(i + 1)}
-            className={`rounded-full border px-4 py-2 text-sm neon-hover ${
-              page === i + 1 ? "bg-[color:var(--neon)] text-black border-transparent" : "border-[color:var(--border)]"
-            }`}
+            className={`rounded-full border px-4 py-2 text-sm neon-hover ${page === i + 1 ? "bg-[--neon] text-black border-transparent" : "border-[--border]"
+              }`}
           >
             {i + 1}
           </button>
         ))}
       </div>
-    </section>
+    </section >
   );
 }
