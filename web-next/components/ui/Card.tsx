@@ -7,5 +7,5 @@ export default function Card({
   children: ReactNode;
   className?: string;
 }) {
-  return <div className={`glass rounded-2xl p-5 neon-hover ${className}`}>{children}</div>;
+  return <div className={`glass rounded-2xl p-5 neon-hover transition duration-300 ease-out ${className}`}>{children}</div>;
 }

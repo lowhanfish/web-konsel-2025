@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import Hero from "@/components/ui/Hero";
+import HeroCarousel from "@/components/ui/HeroCarousel";
 import Card from "@/components/ui/Card";
 import Section from "@/components/ui/Section";
 import { dashboardSummary, quickLinks } from "@/data/site";
@@ -15,46 +15,71 @@ export const metadata = buildMetadata({
 export default function DashboardPage() {
   return (
     <section className="space-y-10">
-      <Hero
-        eyebrow="Pemerintah Kabupaten Konawe Selatan"
-        title="Website resmi pemerintahan yang modern, cepat, dan mudah diakses."
-        description="Portal utama untuk berita, profil daerah, data informasi, agenda, dan galeri publik dengan pendekatan SEO-first dan desain glossy neon."
+      <HeroCarousel
         primaryHref="/berita"
         primaryLabel="Lihat Berita"
         secondaryHref="/gallery/foto"
         secondaryLabel="Galeri Publik"
-        image={{
-          src: "/image/box1.jpg",
-          alt: "Visual utama Pemerintah Kabupaten Konawe Selatan",
-          caption: "Landscape visual utama Kabupaten Konawe Selatan",
-        }}
-        textBackground={{
-          src: "/image/kantor1.jpeg",
-          alt: "Kantor Pemerintah Kabupaten Konawe Selatan",
-        }}
+        slides={[
+          {
+            eyebrow: "Pemerintah Kabupaten Konawe Selatan",
+            title: "Website resmi pemerintahan yang modern, cepat, dan mudah diakses.",
+            description: "Portal utama untuk berita, profil daerah, data informasi, agenda, dan galeri publik dengan pendekatan SEO-first dan desain glossy neon.",
+            image: { src: "/image/box1.jpg", alt: "Visual utama Pemerintah Kabupaten Konawe Selatan" },
+          },
+          {
+            eyebrow: "Layanan Publik",
+            title: "Informasi daerah dan layanan pemerintah dalam tampilan yang dinamis.",
+            description: "Carousel visual yang menonjolkan identitas pemerintah daerah dan atmosfer Konawe Selatan.",
+            image: { src: "/image/box4.jpeg", alt: "Visual layanan publik Konawe Selatan" },
+          },
+          {
+            eyebrow: "Pelayanan Publik",
+            title: "Informasi daerah, layanan, dan dokumentasi publik dalam satu portal resmi.",
+            description: "Tampilan dinamis yang menonjolkan identitas pemerintahan dan keindahan Konawe Selatan.",
+            image: { src: "/image/kantor1.jpeg", alt: "Kantor Pemerintah Kabupaten Konawe Selatan" },
+          },
+          {
+            eyebrow: "Konawe Selatan",
+            title: "Visual daerah dengan nuansa landscape yang lebih luas dan sinematik.",
+            description: "Menampilkan wajah Konawe Selatan dengan komposisi yang lebih dramatis.",
+            image: { src: "/image/box3.jpg", alt: "Landscape Konawe Selatan" },
+          },
+        ]}
       />
 
-      <div className="grid gap-4 md:grid-cols-3">
+      <div className="mx-auto grid max-w-4xl justify-items-center gap-3 md:grid-cols-3">
         {dashboardSummary.leaders.map((leader) => (
-          <Card key={leader.name} className="overflow-hidden p-0">
-            <Image src={leader.image} alt={leader.name} width={1200} height={900} className="h-52 w-full object-cover" />
-            <div className="p-5">
-              <p className="text-xs uppercase tracking-[0.2em] text-[color:var(--muted)]">{leader.role}</p>
-              <h2 className="mt-2 text-xl font-semibold">{leader.name}</h2>
-              <p className="mt-2 text-sm text-[color:var(--muted)]">{leader.note}</p>
+          <Card
+            key={leader.name}
+            className="group mx-auto w-full max-w-none overflow-hidden p-0 transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(245,224,29,0.18)] md:max-w-[14rem] lg:max-w-[13.5rem]"
+          >
+            <div className="relative aspect-[4/5] overflow-hidden md:aspect-[3/4]">
+              <Image src={leader.image} alt={leader.name} fill sizes="(min-width: 1024px) 14rem, (min-width: 768px) 14rem, 100vw" className="object-cover transition duration-500 ease-out group-hover:scale-[1.03]" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent transition duration-300 group-hover:from-black/15" />
+            </div>
+            <div className="px-3 pb-3 pt-2 md:px-3 md:pb-3 md:pt-2">
+              <p className="text-xs uppercase tracking-[0.18em] text-[color:var(--muted)]">{leader.role}</p>
+              <h2 className="mt-1 text-sm font-semibold leading-tight md:text-[15px] md:leading-snug">{leader.name}</h2>
             </div>
           </Card>
         ))}
       </div>
 
       <Section eyebrow="Berita" title="5 Berita Terbaru" description="Ringkasan headline terbaru dari kanal pemerintah daerah.">
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 items-stretch">
           {dashboardSummary.news.map((item, index) => (
-            <Card key={item.title}>
-              <Image src={item.image} alt={item.title} width={1200} height={800} className="mb-4 h-28 w-full rounded-xl object-cover" />
-              <span className="text-xs uppercase tracking-[0.2em] text-[color:var(--muted)]">{item.category}</span>
+            <Card
+              key={item.title}
+              className="group relative flex h-full flex-col overflow-hidden"
+            >
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(245,224,29,0.16),transparent_45%)] opacity-0 transition duration-300 group-hover:opacity-100" />
+              <div className="relative h-28 w-full overflow-hidden rounded-xl">
+                <Image src={item.image} alt={item.title} fill sizes="(min-width: 1280px) 20vw, (min-width: 1024px) 33vw, 50vw" className="object-cover transition duration-500 group-hover:scale-105" />
+              </div>
+              <span className="mt-4 text-xs uppercase tracking-[0.2em] text-[color:var(--muted)]">{item.category}</span>
               <h3
-                className="mt-3 text-base font-semibold leading-6"
+                className="mt-3 text-base font-semibold leading-6 transition duration-300 group-hover:text-[color:var(--neon)]"
                 title={item.title}
                 style={{
                   display: "-webkit-box",
@@ -65,7 +90,7 @@ export default function DashboardPage() {
               >
                 {index + 1}. {item.title}
               </h3>
-              <div className="mt-4 flex items-center justify-between gap-3 text-xs text-[color:var(--muted)]">
+              <div className="mt-auto flex items-center justify-between gap-3 pt-4 text-xs text-[color:var(--muted)]">
                 <span>{item.publishedBy}</span>
                 <span>{item.publishedAt}</span>
               </div>
@@ -78,7 +103,7 @@ export default function DashboardPage() {
         <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
           {dashboardSummary.media.map((item) => (
             <Card key={item.title} className="group overflow-hidden p-0">
-              <Image src={item.src} alt={item.title} width={1200} height={800} className="h-52 w-full object-cover transition duration-500 group-hover:scale-105" />
+              <Image src={item.src} alt={item.title} width={1200} height={800} sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, 50vw" className="h-52 w-full object-cover transition duration-500 group-hover:scale-105" />
               <div className="p-4">
                 <p className="text-xs uppercase tracking-[0.2em] text-[color:var(--muted)]">{item.type}</p>
                 <h3 className="mt-2 text-sm font-medium">{item.title}</h3>
@@ -92,7 +117,7 @@ export default function DashboardPage() {
         <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-2">
           {dashboardSummary.videos.map((item) => (
             <Card key={item.title} className="group overflow-hidden p-0">
-              <Image src={item.src} alt={item.title} width={1200} height={800} className="h-52 w-full object-cover transition duration-500 group-hover:scale-105" />
+              <Image src={item.src} alt={item.title} width={1200} height={800} sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, 50vw" className="h-52 w-full object-cover transition duration-500 group-hover:scale-105" />
               <div className="p-4">
                 <p className="text-xs uppercase tracking-[0.2em] text-[color:var(--muted)]">{item.type}</p>
                 <h3 className="mt-2 text-sm font-medium">{item.title}</h3>

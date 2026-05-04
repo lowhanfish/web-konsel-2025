@@ -111,12 +111,12 @@ export default function BeritaClient() {
 
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         {data.map((item) => (
-          <article key={item.title} className="glass overflow-hidden rounded-3xl p-0 neon-hover">
-            <div className="relative">
+            <article key={item.title} className="glass overflow-hidden rounded-3xl p-0 neon-hover">
+              <div className="relative">
               <Image src={item.image} alt={item.title} width={1200} height={800} className="h-44 w-full object-cover" />
-              <div className="absolute left-4 top-4 rounded-full bg-black/65 px-3 py-1 text-[10px] uppercase tracking-[0.25em] text-white">
-                {item.category}
-              </div>
+                <div className="absolute left-4 top-4 rounded-full bg-black/65 px-3 py-1 text-[10px] uppercase tracking-[0.25em] text-white">
+                  {item.category}
+                </div>
             </div>
             <div className="p-5">
               <div className="flex items-center gap-2 text-[11px] uppercase tracking-[0.25em] text-[color:var(--muted)]">

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import { siteConfig } from "@/data/site";
 
 export const metadata: Metadata = {
@@ -18,6 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <div className="fixed inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,rgba(204,255,0,0.12),transparent_25%),radial-gradient(circle_at_bottom_right,rgba(204,255,0,0.08),transparent_20%)]" />
         <Navbar />
         <main className="mx-auto max-w-7xl px-4 py-8 page-reveal">{children}</main>
+        <Footer />
       </body>
     </html>
   );

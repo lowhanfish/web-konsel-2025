@@ -142,9 +142,9 @@ export const dashboardSummary = {
     },
   ],
   leaders: [
-    { name: "Bupati", role: "Pimpinan daerah", note: "Kebijakan dan arah pembangunan", image: "/image/bupati.png" },
-    { name: "Wakil Bupati", role: "Koordinasi program", note: "Pendampingan eksekusi kebijakan", image: "/image/wakil.png" },
-    { name: "Sekda", role: "Administrasi pemerintahan", note: "Sinkronisasi lintas perangkat daerah", image: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1200&q=80" },
+    { name: "Irham Kalenggo, S.Sos., M.Si.", role: "Bupati", note: "Pimpinan daerah dan arah pembangunan", image: "/image/bupati.png" },
+    { name: "H. Wahyu Ade Pratama Imran", role: "Wakil Bupati", note: "Koordinasi program dan pendampingan kebijakan", image: "/image/wakil.png" },
+    { name: "H. Ichsan Porosi, ST., MTP", role: "Sekretaris Daerah", note: "Administrasi pemerintahan dan sinkronisasi OPD", image: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1200&q=80" },
   ],
   media: [
     { type: "Foto", title: "Kegiatan pelayanan publik", src: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80" },

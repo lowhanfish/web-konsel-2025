@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import type { ReactNode } from "react";
@@ -31,12 +30,6 @@ const submenuIcons: Record<string, ReactNode> = {
   Pengumuman: <FaFilePdf />,
 };
 
-const submenuThumbnails: Record<string, string> = {
-  IPKD: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1200&q=80",
-  Pengumuman: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80",
-  JDIH: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80",
-};
-
 function MenuDropdown({
   item,
   closeAll,
@@ -49,7 +42,7 @@ function MenuDropdown({
   const [openChild, setOpenChild] = useState(false);
 
   return (
-    <div className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--card)] p-2 shadow-2xl shadow-black/20 backdrop-blur-xl animate-[dropdownIn_.18s_ease-out]">
+    <div className="rounded-2xl border border-white/10 bg-slate-950/90 p-2 shadow-2xl shadow-black/35 backdrop-blur-2xl animate-[dropdownIn_.18s_ease-out]">
       <Link
         href={item.href}
         onClick={closeAll}
@@ -61,7 +54,7 @@ function MenuDropdown({
         <p className="px-3 pb-2 text-xs text-[color:var(--muted)]">{item.description}</p>
       ) : null}
       {item.children?.length ? (
-        <div className="mt-2 space-y-1 border-t border-[color:var(--border)] pt-2">
+        <div className="mt-2 space-y-1 border-t border-white/10 pt-2">
           {item.children.map((child) => (
             <div key={child.href} className="rounded-xl">
               {child.children?.length ? (
@@ -69,7 +62,7 @@ function MenuDropdown({
                   type="button"
                   onClick={() => setOpenChild((value) => !value)}
                   className={`flex w-full items-center justify-between rounded-xl px-3 py-2 text-left text-sm neon-hover ${
-                    pathname === child.href || pathname.startsWith(`${child.href}/`) ? "bg-white/10" : ""
+                    pathname === child.href || pathname.startsWith(`${child.href}/`) ? "bg-white/12" : ""
                   }`}
                 >
                   <span className="flex items-center gap-2">
@@ -85,7 +78,7 @@ function MenuDropdown({
                   rel="noreferrer"
                   onClick={closeAll}
                   className={`flex items-center gap-2 rounded-xl px-3 py-2 text-sm neon-hover ${
-                    pathname === child.href ? "bg-white/10" : ""
+                    pathname === child.href ? "bg-white/12" : ""
                   }`}
                 >
                   <span className="opacity-80">{submenuIcons[child.title] ?? null}</span>
@@ -96,18 +89,13 @@ function MenuDropdown({
                   href={child.href}
                   onClick={closeAll}
                   className={`flex items-center gap-2 rounded-xl px-3 py-2 text-sm neon-hover ${
-                    pathname === child.href || pathname.startsWith(`${child.href}/`) ? "bg-white/10" : ""
+                    pathname === child.href || pathname.startsWith(`${child.href}/`) ? "bg-white/12" : ""
                   }`}
                 >
                   <span className="opacity-80">{submenuIcons[child.title] ?? null}</span>
                   {child.title}
                 </Link>
               )}
-              {(child.title in submenuThumbnails) ? (
-                <div className="mt-2 overflow-hidden rounded-xl border border-[color:var(--border)]">
-                  <Image src={submenuThumbnails[child.title]} alt={child.title} width={800} height={400} className="h-20 w-full object-cover" />
-                </div>
-              ) : null}
               {child.children?.length && openChild ? (
                 <div className="ml-3 space-y-1 border-l border-[color:var(--border)] pl-3">
                   {child.children.map((grand) =>
@@ -151,17 +139,17 @@ function MobileMenu({
 
   return (
     <div className="fixed inset-0 z-50 bg-black/65 lg:hidden">
-      <div className="absolute inset-x-3 top-3 rounded-3xl border border-[color:var(--border)] bg-[color:var(--card)] p-4 shadow-2xl backdrop-blur-xl">
+      <div className="absolute inset-x-3 top-3 rounded-3xl border border-white/10 bg-slate-950/92 p-4 shadow-2xl shadow-black/35 backdrop-blur-2xl">
         <div className="flex items-center justify-between">
           <span className="text-sm font-semibold tracking-[0.2em]">MENU</span>
-          <button type="button" onClick={closeAll} className="rounded-full border border-[color:var(--border)] p-2">
+          <button type="button" onClick={closeAll} className="rounded-full border border-white/10 p-2">
             <MdClose />
           </button>
         </div>
 
         <div className="mt-4 space-y-2 max-h-[75vh] overflow-auto pr-1">
           {menu.map((item, index) => (
-            <div key={item.href} className="rounded-2xl border border-[color:var(--border)]">
+            <div key={item.href} className="rounded-2xl border border-white/10">
               {item.children?.length ? (
                 <button
                   type="button"
@@ -187,7 +175,7 @@ function MobileMenu({
               )}
 
               {item.children?.length && openIndex === index ? (
-                <div className="space-y-1 border-t border-[color:var(--border)] p-2">
+                <div className="space-y-1 border-t border-white/10 p-2">
                   {item.children.map((child) =>
                     child.children?.length ? (
                       <div key={child.href} className="rounded-xl border border-[color:var(--border)]">
@@ -279,10 +267,25 @@ export default function Navbar() {
     setMobileOpen(false);
   };
 
+  const shellClass =
+    theme === "dark"
+      ? "sticky top-0 z-50 border-b border-white/10 bg-slate-950/95 text-white shadow-[0_16px_50px_rgba(0,0,0,0.38)] backdrop-blur-3xl"
+      : "sticky top-0 z-50 border-b border-white/70 bg-white/92 text-slate-900 shadow-[0_12px_40px_rgba(15,23,42,0.08)] backdrop-blur-3xl";
+
+  const chipBase =
+    theme === "dark"
+      ? "border-white/10 bg-slate-950/75 text-white/90 hover:border-white/15 hover:bg-black/20 hover:text-white"
+      : "border-slate-200 bg-white/85 text-slate-900 hover:border-slate-300 hover:bg-white hover:text-slate-950";
+
   return (
-    <header className="sticky top-0 z-50 border-b border-[color:var(--border)] glass">
+    <header className={shellClass}>
       <nav className="mx-auto flex max-w-7xl items-center gap-3 px-4 py-3">
-        <Link href="/" className="rounded-2xl border border-[color:var(--border)] px-4 py-2 font-semibold tracking-[0.18em] neon-hover">
+        <Link
+          href="/"
+          className={`rounded-2xl border px-4 py-2 font-semibold tracking-[0.18em] neon-hover ${
+            theme === "dark" ? "border-white/10 bg-black/30 text-white" : "border-slate-200 bg-white text-slate-900"
+          }`}
+        >
           KONSEL
         </Link>
 
@@ -295,8 +298,10 @@ export default function Navbar() {
                   onClick={() => setOpenIndex((value) => (value === index ? null : index))}
                   className={`flex h-11 items-center gap-1 rounded-2xl border px-3 text-sm font-medium leading-none transition neon-hover ${
                     openIndex === index || pathname === item.href || pathname.startsWith(`${item.href}/`)
-                      ? "border-[color:var(--neon)] bg-white/5"
-                      : "border-transparent hover:border-[color:var(--border)] hover:bg-white/5"
+                      ? theme === "dark"
+                        ? "border-[color:var(--neon)] bg-black/30 text-white"
+                        : "border-[color:var(--neon)] bg-white text-slate-900"
+                      : chipBase
                   }`}
                 >
                   <span className="text-[0.95em] opacity-85">{topIcons[item.title] ?? null}</span>
@@ -304,7 +309,7 @@ export default function Navbar() {
                   <MdKeyboardArrowDown className={`transition ${openIndex === index ? "rotate-180" : ""}`} />
                 </button>
               ) : item.external ? (
-                <a href={item.href} target="_blank" rel="noreferrer" className="flex h-11 items-center rounded-2xl border border-transparent px-3 text-sm font-medium leading-none transition hover:border-[color:var(--border)] hover:bg-white/5 neon-hover">
+                <a href={item.href} target="_blank" rel="noreferrer" className={`flex h-11 items-center rounded-2xl border px-3 text-sm font-medium leading-none transition neon-hover ${chipBase}`}>
                   {item.title}
                 </a>
               ) : (
@@ -312,8 +317,10 @@ export default function Navbar() {
                   href={item.href}
                   className={`flex h-11 items-center rounded-2xl border px-3 text-sm font-medium leading-none transition neon-hover ${
                     pathname === item.href || pathname.startsWith(`${item.href}/`)
-                      ? "border-[color:var(--neon)] bg-white/5"
-                      : "border-transparent hover:border-[color:var(--border)] hover:bg-white/5"
+                      ? theme === "dark"
+                        ? "border-[color:var(--neon)] bg-black/30 text-white"
+                        : "border-[color:var(--neon)] bg-white text-slate-900"
+                      : chipBase
                   }`}
                 >
                   <span className="mr-2 text-[0.95em] opacity-85">{topIcons[item.title] ?? null}</span>
@@ -333,7 +340,9 @@ export default function Navbar() {
           <button
             type="button"
             onClick={() => setTheme((value) => (value === "dark" ? "light" : "dark"))}
-            className="rounded-2xl border border-[color:var(--border)] px-4 py-2 text-sm neon-hover"
+            className={`rounded-2xl border px-4 py-2 text-sm neon-hover ${
+              theme === "dark" ? "border-white/10 bg-black/30 text-white" : "border-slate-200 bg-white text-slate-900"
+            }`}
             aria-label="toggle theme"
           >
             {theme === "dark" ? "Light Mode" : "Dark Mode"}
@@ -341,7 +350,9 @@ export default function Navbar() {
           <button
             type="button"
             onClick={() => setMobileOpen(true)}
-            className="rounded-2xl border border-[color:var(--border)] p-3 neon-hover lg:hidden"
+            className={`rounded-2xl border p-3 neon-hover lg:hidden ${
+              theme === "dark" ? "border-white/10 bg-black/30 text-white" : "border-slate-200 bg-white text-slate-900"
+            }`}
             aria-label="open menu"
           >
             <GiHamburgerMenu />

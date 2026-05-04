@@ -78,7 +78,7 @@ export default function FotoClient() {
       </div>
       {current ? (
         <div className="fixed inset-0 z-50 grid place-items-center bg-black/75 p-4" onClick={() => setIdx(null)}>
-          <div className="w-full max-w-5xl rounded-3xl glass p-4" onClick={(e) => e.stopPropagation()}>
+            <div className="w-full max-w-5xl rounded-3xl glass p-4" onClick={(e) => e.stopPropagation()}>
             <div className="flex items-center justify-between gap-3 pb-3">
               <div>
                 <p className="text-xs uppercase tracking-[0.2em] text-[color:var(--muted)]">{current.category}</p>

@@ -55,6 +55,7 @@ export default function Hero({
               src={textBackground.src}
               alt={textBackground.alt}
               fill
+              sizes="(min-width: 1024px) 55vw, 100vw"
               className="object-cover opacity-35"
               priority
               style={{ transform: `scale(1.1) translateY(${offset * 0.55}px)`, transition: "transform 120ms linear" }}
@@ -92,8 +93,10 @@ export default function Hero({
               alt={image.alt}
               width={1600}
               height={1000}
+              sizes="(min-width: 1024px) 40vw, 100vw"
               className="h-full w-full object-cover"
               style={{ transform: `scale(1.06) translateY(${offset * -0.12}px)`, transition: "transform 120ms linear" }}
+              priority
             />
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
           </div>

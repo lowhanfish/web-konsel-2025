@@ -21,7 +21,9 @@ export default function Page() {
         {profileDetails.map((item) => (
           <Link key={item.slug} href={`/profil/pimpinan/${item.slug}`}>
             <Card className="h-full p-0 overflow-hidden">
-              <Image src={item.image} alt={item.title} width={1600} height={1200} className="h-56 w-full object-cover" />
+              <div className="relative aspect-[512/683] w-full overflow-hidden">
+                <Image src={item.image} alt={item.title} fill sizes="(min-width: 768px) 33vw, 100vw" className="object-cover transition duration-500 hover:scale-105" />
+              </div>
               <div className="p-5">
                 <p className="text-xs uppercase tracking-[0.2em] text-[color:var(--muted)]">{item.title}</p>
                 <p className="mt-3 text-sm text-[color:var(--muted)]">{item.summary}</p>
