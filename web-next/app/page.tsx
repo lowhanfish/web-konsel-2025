@@ -1,62 +1,104 @@
 import Image from "next/image";
 import Link from "next/link";
+import Hero from "@/components/ui/Hero";
+import Card from "@/components/ui/Card";
+import Section from "@/components/ui/Section";
+import { dashboardSummary, quickLinks } from "@/data/site";
+import { buildMetadata } from "@/lib/seo";
 
+export const metadata = buildMetadata({
+  title: "Dashboard",
+  description: "Beranda resmi Pemerintah Kabupaten Konawe Selatan dengan berita, pimpinan, galeri, dan tautan layanan.",
+  path: "/",
+});
 
-
-export default function Home() {
+export default function DashboardPage() {
   return (
-    <div className="px-3 lg:px-10 xl:px-[70px]">
-      <div className="grid gap-3 grid-cols-1 lg:grid-cols-3">
+    <section className="space-y-10">
+      <Hero
+        eyebrow="Pemerintah Kabupaten Konawe Selatan"
+        title="Website resmi pemerintahan yang modern, cepat, dan mudah diakses."
+        description="Portal utama untuk berita, profil daerah, data informasi, agenda, dan galeri publik dengan pendekatan SEO-first dan desain glossy neon."
+        primaryHref="/berita"
+        primaryLabel="Lihat Berita"
+        secondaryHref="/gallery/foto"
+        secondaryLabel="Galeri Publik"
+        image={{
+          src: "/image/box1.jpg",
+          alt: "Visual utama Pemerintah Kabupaten Konawe Selatan",
+          caption: "Landscape visual utama Kabupaten Konawe Selatan",
+        }}
+        textBackground={{
+          src: "/image/kantor1.jpeg",
+          alt: "Kantor Pemerintah Kabupaten Konawe Selatan",
+        }}
+      />
 
-        <div className="col-span-2 flex items-center lg:pl-20 relative w-full group overflow-hidden rounded-xl">
-          <div className="md:absolute max-w-[350px] bg-black/70 z-4 p-5 rounded-lg shadow-lg">
-            <p className="font-semibold">Pemerintah Kabupaten </p>
-            <p className="text-[35px] font-bold -mt-3">Konawe Selatan</p>
-            <p className="pt-3 text-[14px] line-clamp-4">Kabupaten Konawe Selatan adalah sebuah kabupaten di Provinsi Sulawesi Tenggara, Indonesia, yang ibu kotanya terletak di Andoolo. Wilayah ini terbentuk dari pemekaran Kabupaten Kendari berdasarkan Undang-Undang Nomor 4 Tahun 2003</p>
-            <Link href="">
-              <button className="mt-3 mb-3 bg-primary border-2 rounded-lg border-primary cursor-pointer h-[45px] px-5 hover:bg-black/30 hover:text-primary">
-                <p className="font-bold text-[12px]">Baca Selengkapnya</p>
-              </button>
-            </Link>
-          </div>
-
-          <div>
-            <Image
-              src="/image/box4.jpeg"
-              alt="Image"
-              fill
-              className="object-cover object-center transform rounded-xl transition-transform duration-700 group-hover:scale-103"
-            />
-
-          </div>
-
-
-
-        </div>
-
-
-        <div className="col-span-1 flex flex-col gap-2 ">
-          <div className="rounded-lg overflow-hidden group">
-
-            <div className="relative h-[200px]">
-              <Image
-                src="/image/coba1.jpeg"
-                alt="Image"
-                fill
-                className="object-cover object-center transform transition-transform duration-700 group-hover:scale-102"
-              />
-            </div>
-            <div className="h-[100px] bg-accent p-5">
-              <p className="font-bold">Behind The Rise of LNG in Chineasd</p>
-            </div>
-          </div>
-
-          <div className="h-[300px] bg-amber-500 rounded-lg">
-
-          </div>
-        </div>
-
+      <div className="grid gap-4 md:grid-cols-3">
+        {dashboardSummary.leaders.map((leader) => (
+          <Card key={leader.name}>
+            <p className="text-xs uppercase tracking-[0.2em] text-[color:var(--muted)]">{leader.role}</p>
+            <h2 className="mt-2 text-xl font-semibold">{leader.name}</h2>
+            <p className="mt-2 text-sm text-[color:var(--muted)]">{leader.note}</p>
+          </Card>
+        ))}
       </div>
-    </div>
+
+      <Section eyebrow="Berita" title="5 Berita Terbaru" description="Ringkasan headline terbaru dari kanal pemerintah daerah.">
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+          {dashboardSummary.news.map((item, index) => (
+            <Card key={item.title}>
+              <Image src={item.image} alt={item.title} width={1200} height={800} className="mb-4 h-28 w-full rounded-xl object-cover" />
+              <span className="text-xs uppercase tracking-[0.2em] text-[color:var(--muted)]">{item.category}</span>
+              <h3 className="mt-3 text-base font-semibold leading-6">{index + 1}. {item.title}</h3>
+            </Card>
+          ))}
+        </div>
+      </Section>
+
+      <Section eyebrow="Media" title="Foto Terbaru" description="Dokumentasi visual kegiatan dan alam Konawe Selatan.">
+        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+          {dashboardSummary.media.map((item) => (
+            <Card key={item.title} className="group overflow-hidden p-0">
+              <Image src={item.src} alt={item.title} width={1200} height={800} className="h-52 w-full object-cover transition duration-500 group-hover:scale-105" />
+              <div className="p-4">
+                <p className="text-xs uppercase tracking-[0.2em] text-[color:var(--muted)]">{item.type}</p>
+                <h3 className="mt-2 text-sm font-medium">{item.title}</h3>
+              </div>
+            </Card>
+          ))}
+        </div>
+      </Section>
+
+      <Section eyebrow="Media" title="Video Terbaru" description="Cuplikan video program dan agenda resmi.">
+        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-2">
+          {dashboardSummary.videos.map((item) => (
+            <Card key={item.title} className="group overflow-hidden p-0">
+              <Image src={item.src} alt={item.title} width={1200} height={800} className="h-52 w-full object-cover transition duration-500 group-hover:scale-105" />
+              <div className="p-4">
+                <p className="text-xs uppercase tracking-[0.2em] text-[color:var(--muted)]">{item.type}</p>
+                <h3 className="mt-2 text-sm font-medium">{item.title}</h3>
+              </div>
+            </Card>
+          ))}
+        </div>
+      </Section>
+
+      <Section eyebrow="Link Terkait" title="Akses cepat ke layanan eksternal" description="Tautan penting untuk pelayanan, data, dan sistem pemerintahan.">
+        <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+          {quickLinks.map((link) => (
+            <Link
+              key={link.title}
+              href={link.href}
+              target={link.external ? "_blank" : undefined}
+              rel={link.external ? "noreferrer" : undefined}
+              className="glass rounded-2xl px-4 py-4 font-medium neon-hover"
+            >
+              {link.title}
+            </Link>
+          ))}
+        </div>
+      </Section>
+    </section>
   );
 }

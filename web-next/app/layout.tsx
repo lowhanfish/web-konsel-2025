@@ -1,31 +1,23 @@
 import type { Metadata } from "next";
-import { Lato, Roboto, Poppins } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
-
-// Load fonts at module scope (required by next/font)
-const lato = Lato({ variable: "--font-lato", subsets: ["latin"], weight: ["400", "700"] });
-const roboto = Roboto({ variable: "--font-roboto", subsets: ["latin"], weight: ["400", "700"] });
-const poppins = Poppins({ variable: "--font-poppins", subsets: ["latin"], weight: ["400", "700"] });
-
-
-// RUJUKAN : https://www.shell.com/investors/why-invest-in-shell.html
+import { siteConfig } from "@/data/site";
 
 export const metadata: Metadata = {
-  title: "KAB. KONAWE SELATAN",
-  description: "Website Resmi Pemerintah Daerah Kab. Konawe Selatan",
+  metadataBase: new URL(siteConfig.url),
+  title: { default: siteConfig.name, template: `%s | ${siteConfig.name}` },
+  description: siteConfig.description,
+  openGraph: { title: siteConfig.name, description: siteConfig.description, url: siteConfig.url, siteName: siteConfig.name, type: "website" },
+  twitter: { card: "summary_large_image", title: siteConfig.name, description: siteConfig.description },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="light">
-      <body className={`${poppins.variable} antialiased bg-background text-foreground`}>
+    <html lang="id" suppressHydrationWarning>
+      <body className="min-h-screen antialiased">
+        <div className="fixed inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,rgba(204,255,0,0.12),transparent_25%),radial-gradient(circle_at_bottom_right,rgba(204,255,0,0.08),transparent_20%)]" />
         <Navbar />
-        {children}
+        <main className="mx-auto max-w-7xl px-4 py-8 page-reveal">{children}</main>
       </body>
     </html>
   );
