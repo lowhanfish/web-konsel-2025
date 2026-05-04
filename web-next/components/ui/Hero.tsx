@@ -1,5 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import Card from "./Card";
 
 export default function Hero({
@@ -30,6 +33,19 @@ export default function Hero({
     caption?: string;
   };
 }) {
+  const [offset, setOffset] = useState(0);
+
+  useEffect(() => {
+    const onScroll = () => {
+      const next = Math.min(window.scrollY * 0.06, 20);
+      setOffset(next);
+    };
+
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
     <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
       <Card className="relative overflow-hidden p-0">
@@ -41,6 +57,7 @@ export default function Hero({
               fill
               className="object-cover opacity-35"
               priority
+              style={{ transform: `scale(1.1) translateY(${offset * 0.55}px)`, transition: "transform 120ms linear" }}
             />
             <div className="absolute inset-0 bg-gradient-to-r from-black/78 via-black/55 to-black/25" />
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(245,224,29,0.16),transparent_32%)]" />
@@ -69,7 +86,17 @@ export default function Hero({
 
       {image ? (
         <Card className="overflow-hidden p-0">
-          <Image src={image.src} alt={image.alt} width={1600} height={1000} className="h-full w-full object-cover" />
+          <div className="relative">
+            <Image
+              src={image.src}
+              alt={image.alt}
+              width={1600}
+              height={1000}
+              className="h-full w-full object-cover"
+              style={{ transform: `scale(1.06) translateY(${offset * -0.12}px)`, transition: "transform 120ms linear" }}
+            />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
+          </div>
           {image.caption ? (
             <div className="p-4">
               <p className="text-xs uppercase tracking-[0.2em] text-[color:var(--muted)]">{image.caption}</p>

@@ -1,5 +1,6 @@
 import PageHeader from "@/components/ui/PageHeader";
 import { buildMetadata } from "@/lib/seo";
+import { AiFillFilePdf } from "react-icons/ai";
 
 export const metadata = buildMetadata({
   title: "Pengumuman",
@@ -19,7 +20,10 @@ export default function Page() {
       <PageHeader title="Pengumuman" description="Informasi dan pengumuman resmi." />
       <div className="grid gap-3">
         {items.map((item) => (
-          <div key={item} className="glass rounded-2xl p-5 neon-hover">{item}</div>
+          <div key={item} className="glass rounded-2xl p-5 neon-hover flex items-center gap-3">
+            <AiFillFilePdf className="text-2xl text-[color:var(--neon)]" />
+            <span>{item}</span>
+          </div>
         ))}
       </div>
     </section>

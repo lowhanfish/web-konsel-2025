@@ -1,23 +1,55 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
+import type { ReactNode } from "react";
+import { usePathname } from "next/navigation";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdClose } from "react-icons/md";
+import { FaNewspaper, FaRegImages, FaRegUser, FaRegCalendarAlt, FaRegFolderOpen, FaRegBell, FaGlobeAsia, FaFilePdf, FaHistory, FaRegListAlt } from "react-icons/fa";
 import { menu, type MenuItem } from "@/data/site";
+
+const topIcons: Record<string, ReactNode> = {
+  Dashboard: <FaGlobeAsia />,
+  Berita: <FaNewspaper />,
+  Profil: <FaRegUser />,
+  "Data & Informasi": <FaRegFolderOpen />,
+  "Agenda/Pengumuman": <FaRegBell />,
+  Gallery: <FaRegImages />,
+  Subdomain: <FaRegCalendarAlt />,
+};
+
+const submenuIcons: Record<string, ReactNode> = {
+  JDIH: <FaFilePdf />,
+  IPKD: <FaRegListAlt />,
+  "Data Sektoral": <FaRegListAlt />,
+  Kepegawaian: <FaRegListAlt />,
+  "Peta Digital": <FaRegListAlt />,
+  Sejarah: <FaHistory />,
+  Pengumuman: <FaFilePdf />,
+};
+
+const submenuThumbnails: Record<string, string> = {
+  IPKD: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1200&q=80",
+  Pengumuman: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80",
+  JDIH: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80",
+};
 
 function MenuDropdown({
   item,
   closeAll,
+  pathname,
 }: {
   item: MenuItem;
   closeAll: () => void;
+  pathname: string;
 }) {
   const [openChild, setOpenChild] = useState(false);
 
   return (
-    <div className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--card)] p-2 shadow-2xl shadow-black/20 backdrop-blur-xl">
+    <div className="rounded-2xl border border-[color:var(--border)] bg-[color:var(--card)] p-2 shadow-2xl shadow-black/20 backdrop-blur-xl animate-[dropdownIn_.18s_ease-out]">
       <Link
         href={item.href}
         onClick={closeAll}
@@ -36,9 +68,14 @@ function MenuDropdown({
                 <button
                   type="button"
                   onClick={() => setOpenChild((value) => !value)}
-                  className="flex w-full items-center justify-between rounded-xl px-3 py-2 text-left text-sm neon-hover"
+                  className={`flex w-full items-center justify-between rounded-xl px-3 py-2 text-left text-sm neon-hover ${
+                    pathname === child.href || pathname.startsWith(`${child.href}/`) ? "bg-white/10" : ""
+                  }`}
                 >
-                  <span>{child.title}</span>
+                  <span className="flex items-center gap-2">
+                    <span className="opacity-80">{submenuIcons[child.title] ?? null}</span>
+                    <span>{child.title}</span>
+                  </span>
                   <MdKeyboardArrowDown className={`transition ${openChild ? "rotate-180" : ""}`} />
                 </button>
               ) : child.external ? (
@@ -47,15 +84,30 @@ function MenuDropdown({
                   target="_blank"
                   rel="noreferrer"
                   onClick={closeAll}
-                  className="block rounded-xl px-3 py-2 text-sm neon-hover"
+                  className={`flex items-center gap-2 rounded-xl px-3 py-2 text-sm neon-hover ${
+                    pathname === child.href ? "bg-white/10" : ""
+                  }`}
                 >
+                  <span className="opacity-80">{submenuIcons[child.title] ?? null}</span>
                   {child.title}
                 </a>
               ) : (
-                <Link href={child.href} onClick={closeAll} className="block rounded-xl px-3 py-2 text-sm neon-hover">
+                <Link
+                  href={child.href}
+                  onClick={closeAll}
+                  className={`flex items-center gap-2 rounded-xl px-3 py-2 text-sm neon-hover ${
+                    pathname === child.href || pathname.startsWith(`${child.href}/`) ? "bg-white/10" : ""
+                  }`}
+                >
+                  <span className="opacity-80">{submenuIcons[child.title] ?? null}</span>
                   {child.title}
                 </Link>
               )}
+              {(child.title in submenuThumbnails) ? (
+                <div className="mt-2 overflow-hidden rounded-xl border border-[color:var(--border)]">
+                  <Image src={submenuThumbnails[child.title]} alt={child.title} width={800} height={400} className="h-20 w-full object-cover" />
+                </div>
+              ) : null}
               {child.children?.length && openChild ? (
                 <div className="ml-3 space-y-1 border-l border-[color:var(--border)] pl-3">
                   {child.children.map((grand) =>
@@ -116,15 +168,20 @@ function MobileMenu({
                   onClick={() => setOpenIndex((value) => (value === index ? null : index))}
                   className="flex w-full items-center justify-between px-4 py-3 text-left font-medium neon-hover"
                 >
-                  <span>{item.title}</span>
+                  <span className="flex items-center gap-2">
+                    <span className="opacity-80">{topIcons[item.title] ?? null}</span>
+                    <span>{item.title}</span>
+                  </span>
                   <MdKeyboardArrowDown className={`transition ${openIndex === index ? "rotate-180" : ""}`} />
                 </button>
               ) : item.external ? (
-                <a href={item.href} target="_blank" rel="noreferrer" onClick={closeAll} className="block px-4 py-3 font-medium neon-hover">
+                <a href={item.href} target="_blank" rel="noreferrer" onClick={closeAll} className="flex items-center gap-2 px-4 py-3 font-medium neon-hover">
+                  <span className="opacity-80">{topIcons[item.title] ?? null}</span>
                   {item.title}
                 </a>
               ) : (
-                <Link href={item.href} onClick={closeAll} className="block px-4 py-3 font-medium neon-hover">
+                <Link href={item.href} onClick={closeAll} className="flex items-center gap-2 px-4 py-3 font-medium neon-hover">
+                  <span className="opacity-80">{topIcons[item.title] ?? null}</span>
                   {item.title}
                 </Link>
               )}
@@ -137,9 +194,14 @@ function MobileMenu({
                         <button
                           type="button"
                           onClick={() => setOpenIndex((value) => (value === index ? null : index))}
-                          className="flex w-full items-center justify-between px-3 py-2 text-sm"
+                          className={`flex w-full items-center justify-between px-3 py-2 text-sm ${
+                            pathname === child.href || pathname.startsWith(`${child.href}/`) ? "bg-white/10" : ""
+                          }`}
                         >
-                          <span>{child.title}</span>
+                          <span className="flex items-center gap-2">
+                            <span className="opacity-80">{submenuIcons[child.title] ?? null}</span>
+                            <span>{child.title}</span>
+                          </span>
                           <MdKeyboardArrowDown />
                         </button>
                         <div className="space-y-1 border-t border-[color:var(--border)] p-2">
@@ -149,7 +211,14 @@ function MobileMenu({
                                 {grand.title}
                               </a>
                             ) : (
-                              <Link key={grand.href} href={grand.href} onClick={closeAll} className="block rounded-lg px-3 py-2 text-xs neon-hover">
+                              <Link
+                                key={grand.href}
+                                href={grand.href}
+                                onClick={closeAll}
+                                className={`block rounded-lg px-3 py-2 text-xs neon-hover ${
+                                  pathname === grand.href ? "bg-white/10" : ""
+                                }`}
+                              >
                                 {grand.title}
                               </Link>
                             )
@@ -177,6 +246,7 @@ function MobileMenu({
 }
 
 export default function Navbar() {
+  const pathname = usePathname();
   const [theme, setTheme] = useState<"light" | "dark">(() => {
     if (typeof window === "undefined") return "light";
     const saved = localStorage.getItem("theme") as "light" | "dark" | null;
@@ -224,9 +294,12 @@ export default function Navbar() {
                   type="button"
                   onClick={() => setOpenIndex((value) => (value === index ? null : index))}
                   className={`flex h-11 items-center gap-1 rounded-2xl border px-3 text-sm font-medium leading-none transition neon-hover ${
-                    openIndex === index ? "border-[color:var(--neon)] bg-white/5" : "border-transparent hover:border-[color:var(--border)] hover:bg-white/5"
+                    openIndex === index || pathname === item.href || pathname.startsWith(`${item.href}/`)
+                      ? "border-[color:var(--neon)] bg-white/5"
+                      : "border-transparent hover:border-[color:var(--border)] hover:bg-white/5"
                   }`}
                 >
+                  <span className="text-[0.95em] opacity-85">{topIcons[item.title] ?? null}</span>
                   {item.title}
                   <MdKeyboardArrowDown className={`transition ${openIndex === index ? "rotate-180" : ""}`} />
                 </button>
@@ -235,13 +308,21 @@ export default function Navbar() {
                   {item.title}
                 </a>
               ) : (
-                <Link href={item.href} className="flex h-11 items-center rounded-2xl border border-transparent px-3 text-sm font-medium leading-none transition hover:border-[color:var(--border)] hover:bg-white/5 neon-hover">
+                <Link
+                  href={item.href}
+                  className={`flex h-11 items-center rounded-2xl border px-3 text-sm font-medium leading-none transition neon-hover ${
+                    pathname === item.href || pathname.startsWith(`${item.href}/`)
+                      ? "border-[color:var(--neon)] bg-white/5"
+                      : "border-transparent hover:border-[color:var(--border)] hover:bg-white/5"
+                  }`}
+                >
+                  <span className="mr-2 text-[0.95em] opacity-85">{topIcons[item.title] ?? null}</span>
                   {item.title}
                 </Link>
               )}
               {item.children?.length && openIndex === index ? (
                 <div className="absolute left-0 top-full z-50 mt-2 min-w-[20rem]">
-                  <MenuDropdown item={item} closeAll={closeAll} />
+                  <MenuDropdown item={item} closeAll={closeAll} pathname={pathname} />
                 </div>
               ) : null}
             </div>

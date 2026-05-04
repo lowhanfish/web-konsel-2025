@@ -36,10 +36,13 @@ export default function DashboardPage() {
 
       <div className="grid gap-4 md:grid-cols-3">
         {dashboardSummary.leaders.map((leader) => (
-          <Card key={leader.name}>
-            <p className="text-xs uppercase tracking-[0.2em] text-[color:var(--muted)]">{leader.role}</p>
-            <h2 className="mt-2 text-xl font-semibold">{leader.name}</h2>
-            <p className="mt-2 text-sm text-[color:var(--muted)]">{leader.note}</p>
+          <Card key={leader.name} className="overflow-hidden p-0">
+            <Image src={leader.image} alt={leader.name} width={1200} height={900} className="h-52 w-full object-cover" />
+            <div className="p-5">
+              <p className="text-xs uppercase tracking-[0.2em] text-[color:var(--muted)]">{leader.role}</p>
+              <h2 className="mt-2 text-xl font-semibold">{leader.name}</h2>
+              <p className="mt-2 text-sm text-[color:var(--muted)]">{leader.note}</p>
+            </div>
           </Card>
         ))}
       </div>
@@ -50,7 +53,22 @@ export default function DashboardPage() {
             <Card key={item.title}>
               <Image src={item.image} alt={item.title} width={1200} height={800} className="mb-4 h-28 w-full rounded-xl object-cover" />
               <span className="text-xs uppercase tracking-[0.2em] text-[color:var(--muted)]">{item.category}</span>
-              <h3 className="mt-3 text-base font-semibold leading-6">{index + 1}. {item.title}</h3>
+              <h3
+                className="mt-3 text-base font-semibold leading-6"
+                title={item.title}
+                style={{
+                  display: "-webkit-box",
+                  WebkitLineClamp: 2,
+                  WebkitBoxOrient: "vertical",
+                  overflow: "hidden",
+                }}
+              >
+                {index + 1}. {item.title}
+              </h3>
+              <div className="mt-4 flex items-center justify-between gap-3 text-xs text-[color:var(--muted)]">
+                <span>{item.publishedBy}</span>
+                <span>{item.publishedAt}</span>
+              </div>
             </Card>
           ))}
         </div>

@@ -46,11 +46,11 @@ export const menu: MenuItem[] = [
     title: "Data & Informasi",
     href: "/data-informasi",
     children: [
-      { title: "JDIH", href: "/data-informasi/jdih", external: true, description: "Portal produk hukum" },
-      { title: "IPKD", href: "/data-informasi/ipkd", description: "Viewer PDF indikator kinerja" },
-      { title: "Data Sektoral", href: "/data-informasi/data-sektoral", external: true, description: "Portal data sektoral" },
-      { title: "Kepegawaian", href: "/data-informasi/kepegawaian", external: true, description: "BKPSDM Konawe Selatan" },
-      { title: "Peta Digital", href: "/data-informasi/peta-digital", external: true, description: "WebGIS resmi" },
+    { title: "JDIH", href: "/data-informasi/jdih", external: true, description: "Portal produk hukum" },
+    { title: "IPKD", href: "/data-informasi/ipkd", description: "Viewer PDF indikator kinerja" },
+    { title: "Data Sektoral", href: "/data-informasi/data-sektoral", external: true, description: "Portal data sektoral" },
+    { title: "Kepegawaian", href: "/data-informasi/kepegawaian", external: true, description: "BKPSDM Konawe Selatan" },
+    { title: "Peta Digital", href: "/data-informasi/peta-digital", external: true, description: "WebGIS resmi" },
     ],
   },
   {
@@ -72,6 +72,13 @@ export const menu: MenuItem[] = [
     ],
   },
 ];
+
+export const directExternalRoutes = new Map<string, string>([
+  ["/data-informasi/jdih", "https://jdih.konaweselatankab.go.id"],
+  ["/data-informasi/data-sektoral", "https://data.konaweselatankab.go.id"],
+  ["/data-informasi/kepegawaian", "https://bkpsdm.konaweselatankab.go.id"],
+  ["/data-informasi/peta-digital", "http://webgis.konaweselatankab.go.id"],
+]);
 
 export const quickLinks = [
   { title: "Kemendagri", href: "https://www.kemendagri.go.id", external: true },
@@ -102,32 +109,42 @@ export const dashboardSummary = {
       title: "Pemerintah dorong layanan digital terpadu",
       category: "Pemda",
       image: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80",
+      publishedBy: "Humas Pemkab Konsel",
+      publishedAt: "4 Mei 2026",
     },
     {
       title: "Percepatan infrastruktur jalan antar wilayah",
       category: "Pembangunan",
       image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80",
+      publishedBy: "Dinas PUPR",
+      publishedAt: "3 Mei 2026",
     },
     {
       title: "Gerakan bersih pantai dan lingkungan",
       category: "Lingkungan",
       image: "https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1200&q=80",
+      publishedBy: "DLH Konawe Selatan",
+      publishedAt: "2 Mei 2026",
     },
     {
       title: "Konsel siapkan agenda pelayanan publik",
       category: "Pelayanan",
       image: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1200&q=80",
+      publishedBy: "Bagian Organisasi",
+      publishedAt: "1 Mei 2026",
     },
     {
       title: "Optimalisasi data sektoral lintas OPD",
       category: "Data",
       image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80",
+      publishedBy: "Diskominfo",
+      publishedAt: "30 April 2026",
     },
   ],
   leaders: [
-    { name: "Bupati", role: "Pimpinan daerah", note: "Kebijakan dan arah pembangunan" },
-    { name: "Wakil Bupati", role: "Koordinasi program", note: "Pendampingan eksekusi kebijakan" },
-    { name: "Sekda", role: "Administrasi pemerintahan", note: "Sinkronisasi lintas perangkat daerah" },
+    { name: "Bupati", role: "Pimpinan daerah", note: "Kebijakan dan arah pembangunan", image: "/image/bupati.png" },
+    { name: "Wakil Bupati", role: "Koordinasi program", note: "Pendampingan eksekusi kebijakan", image: "/image/wakil.png" },
+    { name: "Sekda", role: "Administrasi pemerintahan", note: "Sinkronisasi lintas perangkat daerah", image: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1200&q=80" },
   ],
   media: [
     { type: "Foto", title: "Kegiatan pelayanan publik", src: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80" },

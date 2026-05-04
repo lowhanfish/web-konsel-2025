@@ -11,7 +11,7 @@ export const profileDetails: ProfileDetail[] = [
     slug: "bupati",
     title: "Bupati",
     summary: "Profil lengkap Bupati Konawe Selatan.",
-    image: "https://images.unsplash.com/photo-1551836022-deb4988cc6c0?auto=format&fit=crop&w=1600&q=80",
+    image: "/image/bupati.png",
     sections: [
       { title: "Keluarga", body: "Informasi keluarga inti dan latar belakang sosial." },
       { title: "Riwayat pendidikan", body: "Perjalanan pendidikan formal dan informal." },
@@ -23,7 +23,7 @@ export const profileDetails: ProfileDetail[] = [
     slug: "wakil-bupati",
     title: "Wakil Bupati",
     summary: "Profil lengkap Wakil Bupati Konawe Selatan.",
-    image: "https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=1600&q=80",
+    image: "/image/wakil.png",
     sections: [
       { title: "Keluarga", body: "Informasi keluarga inti dan latar belakang sosial." },
       { title: "Riwayat pendidikan", body: "Perjalanan pendidikan formal dan informal." },
@@ -35,7 +35,7 @@ export const profileDetails: ProfileDetail[] = [
     slug: "sekretaris-daerah",
     title: "Sekretaris Daerah",
     summary: "Profil lengkap Sekretaris Daerah Konawe Selatan.",
-    image: "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=1600&q=80",
+    image: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1600&q=80",
     sections: [
       { title: "Keluarga", body: "Informasi keluarga inti dan latar belakang sosial." },
       { title: "Riwayat pendidikan", body: "Perjalanan pendidikan formal dan informal." },
