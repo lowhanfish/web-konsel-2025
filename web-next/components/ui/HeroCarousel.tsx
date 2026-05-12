@@ -39,7 +39,7 @@ export default function HeroCarousel({
   }, [slides.length]);
 
   return (
-    <Card className="overflow-hidden p-0">
+    <Card className="overflow-hidden p-0 ">
       <div className="grid gap-0 lg:grid-cols-[1.25fr_0.75fr]">
         <div className="relative min-h-66 overflow-hidden md:min-h-76 lg:min-h-84">
           {slides.map((slide, slideIndex) => (
@@ -93,15 +93,15 @@ export default function HeroCarousel({
                   <Image src={slide.image.src} alt={slide.image.alt} fill sizes="112px" className="object-cover" loading="eager" />
                 </div>
                 <div className="min-w-0 flex-1">
-                  {slide.eyebrow ? <p className="text-[10px] uppercase tracking-[0.2em] text-[color:var(--muted)]">{slide.eyebrow}</p> : null}
-                  <p className="mt-1 line-clamp-2 text-left text-sm font-semibold text-[color:var(--fg)]">{slide.title}</p>
+                  {slide.eyebrow ? <p className="text-[10px] uppercase tracking-[0.2em] text-(--muted)">{slide.eyebrow}</p> : null}
+                  <p className="mt-1 line-clamp-2 text-left text-sm font-semibold text-(--fg)">{slide.title}</p>
                 </div>
               </div>
             </button>
           ))}
         </div>
       </div>
-      <div className="flex items-center justify-center gap-2 border-t border-[--border] bg-[color:var(--card)]/40 px-4 py-2.5">
+      <div className="flex items-center justify-center gap-2 border-t border-[--border] bg-(--card)/40 px-4 py-2.5">
         {slides.map((slide, slideIndex) => (
           <button
             key={slide.title}

@@ -6,6 +6,8 @@ import Card from "@/components/ui/Card";
 import Section from "@/components/ui/Section";
 import { dashboardSummary, quickLinks } from "@/data/site";
 import { buildMetadata } from "@/lib/seo";
+import TextHeader from "@/components/ui/TextHeader";
+
 
 export const metadata = buildMetadata({
   title: "Dashboard",
@@ -16,7 +18,8 @@ export const metadata = buildMetadata({
 export default function DashboardPage() {
   return (
     <section className="space-y-8 md:space-y-9">
-      <TopBannerCarousel />
+      {/* <TopBannerCarousel /> */}
+      <TextHeader />
 
       <HeroCarousel
         primaryHref="/berita"

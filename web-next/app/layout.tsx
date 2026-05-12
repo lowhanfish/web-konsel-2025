@@ -18,7 +18,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="min-h-screen antialiased">
         <div className="fixed inset-0 -z-10 bg-[radial-gradient(circle_at_10%_5%,rgba(214,174,93,0.18),transparent_30%),radial-gradient(circle_at_90%_0%,rgba(28,83,122,0.18),transparent_35%),linear-gradient(180deg,rgba(255,255,255,0.5),transparent_45%)]" />
         <Navbar />
-        <main className="mx-auto max-w-7xl px-6 py-14 page-reveal md:px-8 md:py-20 lg:py-24">{children}</main>
+
+        <main className="mx-auto max-w-7xl px-6 py-3 page-reveal md:px-8 md:py-20 lg:py-10">{children}</main>
         <Footer />
       </body>
     </html>
