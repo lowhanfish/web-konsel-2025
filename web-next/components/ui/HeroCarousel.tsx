@@ -41,7 +41,7 @@ export default function HeroCarousel({
   return (
     <Card className="overflow-hidden p-0">
       <div className="grid gap-0 lg:grid-cols-[1.25fr_0.75fr]">
-        <div className="relative min-h-[16.5rem] overflow-hidden md:min-h-[19rem] lg:min-h-[21rem]">
+        <div className="relative min-h-66 overflow-hidden md:min-h-76 lg:min-h-84">
           {slides.map((slide, slideIndex) => (
             <div
               key={slide.title}
@@ -53,18 +53,18 @@ export default function HeroCarousel({
                 alt={slide.image.alt}
                 fill
                 sizes="(min-width: 1024px) 60vw, 100vw"
-                className={`object-cover transition duration-[1400ms] ease-out ${slideIndex === index ? "scale-105" : "scale-110"}`}
+                className={`object-cover transition duration-1400 ease-out ${slideIndex === index ? "scale-105" : "scale-110"}`}
                 priority={slideIndex === 0}
                 loading="eager"
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/45 to-black/20" />
+              <div className="absolute inset-0 bg-linear-to-r from-black/70 via-black/45 to-black/20" />
               <div className="relative flex h-full flex-col justify-end p-5 text-white md:p-8">
                 {slide.eyebrow ? <p className="text-xs uppercase tracking-[0.3em] text-white/70">{slide.eyebrow}</p> : null}
                 <h1 className="mt-2 max-w-3xl font-[var(--font-serif)] text-2xl font-semibold tracking-tight md:text-4xl">{slide.title}</h1>
                 {slide.description ? <p className="mt-3 max-w-2xl text-sm text-white/85 md:text-base">{slide.description}</p> : null}
                 <div className="mt-5 flex flex-wrap gap-3">
                   {primaryHref && primaryLabel ? (
-                    <Link href={primaryHref} className="rounded-full bg-[color:var(--accent)] px-5 py-3 font-semibold text-black neon-hover">
+                    <Link href={primaryHref} className="rounded-full bg-(--accent) px-5 py-3 font-semibold text-black neon-hover">
                       {primaryLabel}
                     </Link>
                   ) : null}

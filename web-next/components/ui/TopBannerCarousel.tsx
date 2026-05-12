@@ -22,8 +22,8 @@ export default function TopBannerCarousel() {
   }, []);
 
   return (
-    <div className="rounded-2xl border border-white/95 bg-white p-3 shadow-[0_8px_24px_rgba(15,23,42,0.12)] dark:border-slate-800 dark:bg-slate-950 md:rounded-3xl md:p-4">
-      <div className="relative aspect-[1476/559] w-full overflow-hidden rounded-xl ring-1 ring-black/5 dark:ring-white/10 md:rounded-2xl">
+    <div className="rounded-2xl bg-w dark:bg-(--accent)/50 md:rounded-3xl md:p-4">
+      <div className="relative aspect-1476/559 w-full overflow-hidden rounded-xl ring-1 ring-black/5 dark:ring-white/10 md:rounded-2xl">
         {topBanners.map((banner, idx) => (
           <div
             key={`${banner.src}-${idx}`}

@@ -55,14 +55,14 @@ export default function DashboardPage() {
         {dashboardSummary.leaders.map((leader) => (
           <Card
             key={leader.name}
-            className="group mx-auto w-full max-w-none overflow-hidden p-0 transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(245,224,29,0.18)] md:max-w-[14rem] lg:max-w-[13.5rem]"
+            className="group mx-auto w-full max-w-none overflow-hidden p-0 transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(245,224,29,0.18)] md:max-w-56 lg:max-w-54"
           >
-            <div className="relative aspect-[4/5] overflow-hidden md:aspect-[3/4]">
+            <div className="relative aspect-4/5 overflow-hidden md:aspect-3/4">
               <Image src={leader.image} alt={leader.name} fill sizes="(min-width: 1024px) 14rem, (min-width: 768px) 14rem, 100vw" className="object-cover transition duration-500 ease-out group-hover:scale-[1.03]" />
               <div className="absolute inset-0 bg-linear-to-t from-black/25 via-transparent to-transparent transition duration-300 group-hover:from-black/15" />
             </div>
             <div className="px-3 pb-3 pt-2 md:px-3 md:pb-3 md:pt-2">
-              <p className="text-xs uppercase tracking-[0.18em] text-[color:var(--muted)]">{leader.role}</p>
+              <p className="text-xs uppercase tracking-[0.18em] text-(--muted)">{leader.role}</p>
               <h2 className="mt-1 text-sm font-semibold leading-tight md:text-[15px] md:leading-snug">{leader.name}</h2>
             </div>
           </Card>
@@ -80,9 +80,9 @@ export default function DashboardPage() {
               <div className="relative h-28 w-full overflow-hidden rounded-xl">
                 <Image src={item.image} alt={item.title} fill sizes="(min-width: 1280px) 20vw, (min-width: 1024px) 33vw, 50vw" className="object-cover transition duration-500 group-hover:scale-105" />
               </div>
-              <span className="mt-4 text-xs uppercase tracking-[0.2em] text-[color:var(--muted)]">{item.category}</span>
+              <span className="mt-4 text-xs uppercase tracking-[0.2em] text-(--muted)">{item.category}</span>
               <h3
-                className="mt-3 text-base font-semibold leading-6 transition duration-300 group-hover:text-[color:var(--accent)]"
+                className="mt-3 text-base font-semibold leading-6 transition duration-300 group-hover:text-(--accent)"
                 title={item.title}
                 style={{
                   display: "-webkit-box",
@@ -93,7 +93,7 @@ export default function DashboardPage() {
               >
                 {index + 1}. {item.title}
               </h3>
-              <div className="mt-auto flex items-center justify-between gap-3 pt-4 text-xs text-[color:var(--muted)]">
+              <div className="mt-auto flex items-center justify-between gap-3 pt-4 text-xs text-(--muted)">
                 <span>{item.publishedBy}</span>
                 <span>{item.publishedAt}</span>
               </div>
@@ -108,7 +108,7 @@ export default function DashboardPage() {
             <Card key={item.title} className="group overflow-hidden p-0">
               <Image src={item.src} alt={item.title} width={1200} height={800} sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, 50vw" className="h-52 w-full object-cover transition duration-500 group-hover:scale-105" />
               <div className="p-4">
-                <p className="text-xs uppercase tracking-[0.2em] text-[color:var(--muted)]">{item.type}</p>
+                <p className="text-xs uppercase tracking-[0.2em] text-(--muted)">{item.type}</p>
                 <h3 className="mt-2 text-sm font-medium">{item.title}</h3>
               </div>
             </Card>
@@ -122,7 +122,7 @@ export default function DashboardPage() {
             <Card key={item.title} className="group overflow-hidden p-0">
               <Image src={item.src} alt={item.title} width={1200} height={800} sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, 50vw" className="h-52 w-full object-cover transition duration-500 group-hover:scale-105" />
               <div className="p-4">
-                <p className="text-xs uppercase tracking-[0.2em] text-[color:var(--muted)]">{item.type}</p>
+                <p className="text-xs uppercase tracking-[0.2em] text-(--muted)">{item.type}</p>
                 <h3 className="mt-2 text-sm font-medium">{item.title}</h3>
               </div>
             </Card>
