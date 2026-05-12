@@ -1,27 +1,25 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #f7f8fb;
-  --fg: #0c1220;
-  --muted: #6b7280;
-  --card: rgba(255, 255, 255, 0.56);
-  --border: rgba(12, 18, 32, 0.12);
-  --neon: #f5e01d;
-  --neon-rgb: 245, 224, 29;
+  --bg: #f4f5f7;
+  --fg: #101828;
+  --muted: #5f6c7b;
+  --card: rgba(255, 255, 255, 0.78);
+  --border: rgba(15, 23, 42, 0.12);
+  --accent: #c89b3c;
+  --accent-rgb: 200, 155, 60;
+  --font-sans: "Avenir Next", "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-serif: "Iowan Old Style", "Baskerville", "Times New Roman", serif;
 }
 
 .dark {
-  --bg: #0f0f23;
-  --fg: #f1f5f9;
-  --muted: #94a3b8;
-  --card: rgba(15, 23, 42, 0.85);
-  --border: rgba(148, 163, 184, 0.15);
-  --primary: #3b82f6;
-  --success: #34d399;
-  --accent: #fde047;
-  --neon: #f5e01d;
-  --neon-rgb: 245, 224, 29;
-  /* Spacing & Typography same as light */
+  --bg: #0b121b;
+  --fg: #ecf2f9;
+  --muted: #98a7b8;
+  --card: rgba(12, 20, 32, 0.85);
+  --border: rgba(180, 196, 216, 0.2);
+  --accent: #d8b15f;
+  --accent-rgb: 216, 177, 95;
 }
 
 html,
@@ -32,22 +30,24 @@ body {
 body {
   background-color: var(--bg);
   background-image:
-    linear-gradient(var(--space-3xl) at top, rgba(255, 255, 255, 0.1), transparent),
-    radial-gradient(circle at var(--space-sm) var(--space-xs), rgba(var(--neon-rgb), 0.03), transparent var(--space-md)),
+    radial-gradient(circle at 15% -10%, rgba(var(--accent-rgb), 0.14), transparent 35%),
+    radial-gradient(circle at 90% -5%, rgba(28, 83, 122, 0.15), transparent 28%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.66), transparent 40%),
     url("/image/bg5.jpg");
-  background-position: center;
+  background-position: top center;
   background-size: cover;
   background-attachment: fixed;
   color: var(--fg);
-  font-size: var(--font-size-base);
-  line-height: var(--line-height-loose);
+  font-family: var(--font-sans), sans-serif;
+  line-height: 1.65;
 }
 
 .dark body {
   background-color: var(--bg);
   background-image:
-    linear-gradient(var(--space-3xl) at top, rgba(15, 23, 42, 0.4), transparent),
-    linear-gradient(120deg, rgba(var(--neon-rgb), 0.12) 0%, transparent var(--space-sm), transparent calc(100%-var(--space-sm)), rgba(var(--neon-rgb), 0.08) 100%),
+    radial-gradient(circle at 0% -10%, rgba(var(--accent-rgb), 0.12), transparent 36%),
+    radial-gradient(circle at 100% 0%, rgba(35, 99, 151, 0.2), transparent 32%),
+    linear-gradient(180deg, rgba(1, 10, 18, 0.72), rgba(6, 15, 24, 0.88)),
     url("/image/bg2.jpg");
   background-position: center;
   background-size: cover;
@@ -61,7 +61,7 @@ body {
   z-index: -1;
   pointer-events: none;
   background:
-    radial-gradient(circle at 20% 20%, rgba(245, 224, 29, 0.14), transparent 24%),
+    radial-gradient(circle at 20% 20%, rgba(var(--accent-rgb), 0.18), transparent 24%),
     radial-gradient(circle at 80% 0%, rgba(255, 255, 255, 0.06), transparent 22%),
     radial-gradient(circle at 50% 100%, rgba(0, 0, 0, 0.24), transparent 38%);
   backdrop-filter: saturate(1.1);
@@ -75,7 +75,7 @@ body {
   border: 1px solid var(--border);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.18),
-    0 10px 30px rgba(2, 6, 23, 0.08);
+    0 12px 28px rgba(2, 6, 23, 0.08);
   backdrop-filter: blur(18px) saturate(1.1);
   -webkit-backdrop-filter: blur(18px) saturate(1.1);
 }
@@ -95,7 +95,7 @@ body {
 }
 
 .neon-hover:hover {
-  box-shadow: 0 0 0 1px rgba(var(--neon-rgb), .72), 0 0 22px rgba(var(--neon-rgb), .36);
+  box-shadow: 0 0 0 1px rgba(var(--accent-rgb), 0.5), 0 10px 24px rgba(var(--accent-rgb), 0.2);
   transform: translateY(-2px);
 }
 

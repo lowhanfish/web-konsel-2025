@@ -40,8 +40,8 @@ export default function HeroCarousel({
 
   return (
     <Card className="overflow-hidden p-0">
-      <div className="grid gap-0 lg:grid-cols-[1.15fr_0.85fr]">
-        <div className="relative min-h-[26rem] overflow-hidden">
+      <div className="grid gap-0 lg:grid-cols-[1.25fr_0.75fr]">
+        <div className="relative min-h-[16.5rem] overflow-hidden md:min-h-[19rem] lg:min-h-[21rem]">
           {slides.map((slide, slideIndex) => (
             <div
               key={slide.title}
@@ -57,20 +57,19 @@ export default function HeroCarousel({
                 priority={slideIndex === 0}
                 loading="eager"
               />
-              <div className="absolute inset-0 bg-linear-to-r from-black/80 via-black/60 to-black/25" />
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(245,224,29,0.16),transparent_35%)]" />
-              <div className="relative flex h-full flex-col justify-end p-6 text-white md:p-10">
+              <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/45 to-black/20" />
+              <div className="relative flex h-full flex-col justify-end p-5 text-white md:p-8">
                 {slide.eyebrow ? <p className="text-xs uppercase tracking-[0.3em] text-white/70">{slide.eyebrow}</p> : null}
-                <h1 className="mt-3 max-w-3xl text-3xl font-semibold tracking-tight md:text-5xl">{slide.title}</h1>
-                {slide.description ? <p className="mt-4 max-w-3xl text-white/80">{slide.description}</p> : null}
-                <div className="mt-6 flex flex-wrap gap-3">
+                <h1 className="mt-2 max-w-3xl font-[var(--font-serif)] text-2xl font-semibold tracking-tight md:text-4xl">{slide.title}</h1>
+                {slide.description ? <p className="mt-3 max-w-2xl text-sm text-white/85 md:text-base">{slide.description}</p> : null}
+                <div className="mt-5 flex flex-wrap gap-3">
                   {primaryHref && primaryLabel ? (
-                    <Link href={primaryHref} className="rounded-full bg-[--neon] px-5 py-3 font-semibold text-black neon-hover">
+                    <Link href={primaryHref} className="rounded-full bg-[color:var(--accent)] px-5 py-3 font-semibold text-black neon-hover">
                       {primaryLabel}
                     </Link>
                   ) : null}
                   {secondaryHref && secondaryLabel ? (
-                    <Link href={secondaryHref} className="rounded-full border border-white/30 px-5 py-3 neon-hover">
+                    <Link href={secondaryHref} className="rounded-full border border-white/35 px-5 py-3 neon-hover">
                       {secondaryLabel}
                     </Link>
                   ) : null}
@@ -80,35 +79,35 @@ export default function HeroCarousel({
           ))}
         </div>
 
-        <div className="hidden grid gap-3 p-4 md:p-5 lg:grid">
+        <div className="hidden grid gap-2.5 p-3 md:p-4 lg:grid">
           {slides.map((slide, slideIndex) => (
             <button
               key={slide.title}
               type="button"
               onClick={() => setIndex(slideIndex)}
-              className={`group overflow-hidden rounded-3xl border-2 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-accent/25 ${slideIndex === index ? "border-accent ring-4 ring-accent/30 shadow-glow-lg" : "border-border/50 hover:border-accent/70"
+              className={`group overflow-hidden rounded-2xl border transition-all duration-300 ${slideIndex === index ? "border-[color:var(--accent)] bg-[color:var(--card)]/70" : "border-[color:var(--border)] bg-transparent hover:border-[color:var(--accent)]/70"
                 }`}
             >
-              <div className="flex items-center gap-4 p-6">
-                <div className="relative h-20 w-28 shrink-0 overflow-hidden rounded-3xl group-hover:scale-110 transition-transform duration-500">
+              <div className="flex items-center gap-3 p-3.5">
+                <div className="relative h-14 w-20 shrink-0 overflow-hidden rounded-xl">
                   <Image src={slide.image.src} alt={slide.image.alt} fill sizes="112px" className="object-cover" loading="eager" />
                 </div>
                 <div className="min-w-0 flex-1">
-                  {slide.eyebrow ? <p className="text-xs uppercase tracking-widest font-medium text-muted">{slide.eyebrow}</p> : null}
-                  <p className="mt-2 truncate text-base font-bold text-foreground line-clamp-2">{slide.title}</p>
+                  {slide.eyebrow ? <p className="text-[10px] uppercase tracking-[0.2em] text-[color:var(--muted)]">{slide.eyebrow}</p> : null}
+                  <p className="mt-1 line-clamp-2 text-left text-sm font-semibold text-[color:var(--fg)]">{slide.title}</p>
                 </div>
               </div>
             </button>
           ))}
         </div>
       </div>
-      <div className="flex items-center justify-center gap-2 border-t border-[--border] bg-black/10 px-4 py-3">
+      <div className="flex items-center justify-center gap-2 border-t border-[--border] bg-[color:var(--card)]/40 px-4 py-2.5">
         {slides.map((slide, slideIndex) => (
           <button
             key={slide.title}
             type="button"
             onClick={() => setIndex(slideIndex)}
-            className={`h-2.5 rounded-full transition-all duration-300 ${slideIndex === index ? "w-10 bg-[--neon]" : "w-2.5 bg-white/40"
+            className={`h-2.5 rounded-full transition-all duration-300 ${slideIndex === index ? "w-10 bg-[color:var(--accent)]" : "w-2.5 bg-white/40"
               }`}
             aria-label={`Slide ${slideIndex + 1}`}
           />

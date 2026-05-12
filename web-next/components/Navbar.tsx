@@ -39,7 +39,7 @@ function MenuDropdown({
   closeAll: () => void;
   pathname: string;
 }) {
-  const [openChild, setOpenChild] = useState(false);
+  const [openChild, setOpenChild] = useState<string | null>(null);
 
   return (
     <div className="rounded-2xl border border-white/10 bg-slate-950/90 p-2 shadow-2xl shadow-black/35 backdrop-blur-2xl animate-[dropdownIn_.18s_ease-out]">
@@ -51,7 +51,7 @@ function MenuDropdown({
         {item.title}
       </Link>
       {item.description ? (
-        <p className="px-3 pb-2 text-xs text-[--muted]">{item.description}</p>
+        <p className="px-3 pb-2 text-xs text-[color:var(--muted)]">{item.description}</p>
       ) : null}
       {item.children?.length ? (
         <div className="mt-2 space-y-1 border-t border-white/10 pt-2">
@@ -60,7 +60,7 @@ function MenuDropdown({
               {child.children?.length ? (
                 <button
                   type="button"
-                  onClick={() => setOpenChild((value) => !value)}
+                  onClick={() => setOpenChild((value) => (value === child.href ? null : child.href))}
                   className={`flex w-full items-center justify-between rounded-xl px-3 py-2 text-left text-sm neon-hover ${pathname === child.href || pathname.startsWith(`${child.href}/`) ? "bg-white/12" : ""
                     }`}
                 >
@@ -68,7 +68,7 @@ function MenuDropdown({
                     <span className="opacity-80">{submenuIcons[child.title] ?? null}</span>
                     <span>{child.title}</span>
                   </span>
-                  <MdKeyboardArrowDown className={`transition ${openChild ? "rotate-180" : ""}`} />
+                  <MdKeyboardArrowDown className={`transition ${openChild === child.href ? "rotate-180" : ""}`} />
                 </button>
               ) : child.external ? (
                 <a
@@ -93,7 +93,7 @@ function MenuDropdown({
                   {child.title}
                 </Link>
               )}
-              {child.children?.length && openChild ? (
+              {child.children?.length && openChild === child.href ? (
                 <div className="ml-3 space-y-1 border-l border-[--border] pl-3">
                   {child.children.map((grand) =>
                     grand.external ? (
@@ -133,6 +133,7 @@ function MobileMenu({
   pathname: string;
 }) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [openChild, setOpenChild] = useState<string | null>(null);
 
   if (!open) return null;
 
@@ -180,7 +181,7 @@ function MobileMenu({
                       <div key={child.href} className="rounded-xl border border-[--border]">
                         <button
                           type="button"
-                          onClick={() => setOpenIndex((value) => (value === index ? null : index))}
+                          onClick={() => setOpenChild((value) => (value === child.href ? null : child.href))}
                           className={`flex w-full items-center justify-between px-3 py-2 text-sm ${pathname === child.href || pathname.startsWith(`${child.href}/`) ? "bg-white/10" : ""
                             }`}
                         >
@@ -188,27 +189,29 @@ function MobileMenu({
                             <span className="opacity-80">{submenuIcons[child.title] ?? null}</span>
                             <span>{child.title}</span>
                           </span>
-                          <MdKeyboardArrowDown />
+                          <MdKeyboardArrowDown className={`transition ${openChild === child.href ? "rotate-180" : ""}`} />
                         </button>
-                        <div className="space-y-1 border-t border-[--border] p-2">
-                          {child.children.map((grand) =>
-                            grand.external ? (
-                              <a key={grand.href} href={grand.href} target="_blank" rel="noreferrer" onClick={closeAll} className="block rounded-lg px-3 py-2 text-xs neon-hover">
-                                {grand.title}
-                              </a>
-                            ) : (
-                              <Link
-                                key={grand.href}
-                                href={grand.href}
-                                onClick={closeAll}
-                                className={`block rounded-lg px-3 py-2 text-xs neon-hover ${pathname === grand.href ? "bg-white/10" : ""
-                                  }`}
-                              >
-                                {grand.title}
-                              </Link>
-                            )
-                          )}
-                        </div>
+                        {openChild === child.href ? (
+                          <div className="space-y-1 border-t border-[--border] p-2">
+                            {child.children.map((grand) =>
+                              grand.external ? (
+                                <a key={grand.href} href={grand.href} target="_blank" rel="noreferrer" onClick={closeAll} className="block rounded-lg px-3 py-2 text-xs neon-hover">
+                                  {grand.title}
+                                </a>
+                              ) : (
+                                <Link
+                                  key={grand.href}
+                                  href={grand.href}
+                                  onClick={closeAll}
+                                  className={`block rounded-lg px-3 py-2 text-xs neon-hover ${pathname === grand.href ? "bg-white/10" : ""
+                                    }`}
+                                >
+                                  {grand.title}
+                                </Link>
+                              )
+                            )}
+                          </div>
+                        ) : null}
                       </div>
                     ) : child.external ? (
                       <a key={child.href} href={child.href} target="_blank" rel="noreferrer" onClick={closeAll} className="block rounded-xl px-3 py-2 text-sm neon-hover">
@@ -237,24 +240,24 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const desktopMenu = useMemo(() => menu, []);
 
-  // Improved theme auto-detect with listener
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    const saved = localStorage.getItem("theme") as "light" | "dark" | null;
+    const saved = localStorage.getItem("theme");
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-    const initialTheme = saved || (mediaQuery.matches ? "dark" : "light");
+    const initialTheme =
+      saved === "light" || saved === "dark"
+        ? saved
+        : mediaQuery.matches
+          ? "dark"
+          : "light";
 
-    setTheme(initialTheme);
-    document.documentElement.classList.remove("light", "dark");
-    document.documentElement.classList.add(initialTheme);
+    queueMicrotask(() => setTheme(initialTheme));
 
     const handleChange = (e: MediaQueryListEvent) => {
-      if (!saved) {
+      if (saved !== "light" && saved !== "dark") {
         const newTheme = e.matches ? "dark" : "light";
         setTheme(newTheme);
-        document.documentElement.classList.remove("light", "dark");
-        document.documentElement.classList.add(newTheme);
       }
     };
 
@@ -315,8 +318,8 @@ export default function Navbar() {
                   onClick={() => setOpenIndex((value) => (value === index ? null : index))}
                   className={`flex h-11 items-center gap-1 rounded-2xl border px-3 text-sm font-medium leading-none transition neon-hover ${openIndex === index || pathname === item.href || pathname.startsWith(`${item.href}/`)
                     ? theme === "dark"
-                      ? "border-[--neon] bg-black/30 text-white"
-                      : "border-[--neon] bg-white text-slate-900"
+                      ? "border-[color:var(--accent)] bg-black/30 text-white"
+                      : "border-[color:var(--accent)] bg-white text-slate-900"
                     : chipBase
                     }`}
                 >
@@ -333,8 +336,8 @@ export default function Navbar() {
                   href={item.href}
                   className={`flex h-11 items-center rounded-2xl border px-3 text-sm font-medium leading-none transition neon-hover ${pathname === item.href || pathname.startsWith(`${item.href}/`)
                     ? theme === "dark"
-                      ? "border-[--neon] bg-black/30 text-white"
-                      : "border-[--neon] bg-white text-slate-900"
+                      ? "border-[color:var(--accent)] bg-black/30 text-white"
+                      : "border-[color:var(--accent)] bg-white text-slate-900"
                     : chipBase
                     }`}
                 >

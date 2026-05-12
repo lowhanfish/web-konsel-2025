@@ -16,9 +16,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="id" suppressHydrationWarning>
       <body className="min-h-screen antialiased">
-        <div className="fixed inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,rgba(204,255,0,0.12),transparent_25%),radial-gradient(circle_at_bottom_right,rgba(204,255,0,0.08),transparent_20%)]" />
+        <div className="fixed inset-0 -z-10 bg-[radial-gradient(circle_at_10%_5%,rgba(214,174,93,0.18),transparent_30%),radial-gradient(circle_at_90%_0%,rgba(28,83,122,0.18),transparent_35%),linear-gradient(180deg,rgba(255,255,255,0.5),transparent_45%)]" />
         <Navbar />
-        <main className="mx-auto max-w-7xl px-6 md:px-8 py-16 md:py-24 lg:py-32 page-reveal animate-fade-in-up">{children}</main>
+        <main className="mx-auto max-w-7xl px-6 py-14 page-reveal md:px-8 md:py-20 lg:py-24">{children}</main>
         <Footer />
       </body>
     </html>

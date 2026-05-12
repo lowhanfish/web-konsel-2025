@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import HeroCarousel from "@/components/ui/HeroCarousel";
+import TopBannerCarousel from "@/components/ui/TopBannerCarousel";
 import Card from "@/components/ui/Card";
 import Section from "@/components/ui/Section";
 import { dashboardSummary, quickLinks } from "@/data/site";
@@ -14,7 +15,9 @@ export const metadata = buildMetadata({
 
 export default function DashboardPage() {
   return (
-    <section className="space-y-10">
+    <section className="space-y-8 md:space-y-9">
+      <TopBannerCarousel />
+
       <HeroCarousel
         primaryHref="/berita"
         primaryLabel="Lihat Berita"
@@ -79,7 +82,7 @@ export default function DashboardPage() {
               </div>
               <span className="mt-4 text-xs uppercase tracking-[0.2em] text-[color:var(--muted)]">{item.category}</span>
               <h3
-                className="mt-3 text-base font-semibold leading-6 transition duration-300 group-hover:text-[color:var(--neon)]"
+                className="mt-3 text-base font-semibold leading-6 transition duration-300 group-hover:text-[color:var(--accent)]"
                 title={item.title}
                 style={{
                   display: "-webkit-box",
