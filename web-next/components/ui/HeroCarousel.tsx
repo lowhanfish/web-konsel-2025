@@ -42,42 +42,37 @@ export default function HeroCarousel({
     <Card className="overflow-hidden p-0 ">
       <div className="grid gap-0 lg:grid-cols-[1.25fr_0.75fr]">
         <div className="relative min-h-[16.5rem] overflow-hidden md:min-h-[19rem] lg:min-h-[21rem]">
-          {slides.map((slide, slideIndex) => (
-            <div
-              key={slide.title}
-              className={`absolute inset-0 transition-[opacity,transform] duration-700 ease-out ${slideIndex === index ? "opacity-100 translate-y-0 scale-100" : "pointer-events-none opacity-0 translate-y-3 scale-[1.02]"
-                }`}
-            >
-              <Image
-                src={slide.image.src}
-                alt={slide.image.alt}
-                fill
-                sizes="(min-width: 1024px) 60vw, 100vw"
-                className={`object-cover transition duration-[1400ms] ease-out ${slideIndex === index ? "scale-105" : "scale-110"}`}
-                priority={slideIndex === 0}
-                loading={slideIndex === 0 ? "eager" : "lazy"}
-                fetchPriority={slideIndex === 0 ? "high" : "auto"}
-              />
-              <div className="absolute inset-0 bg-linear-to-r from-black/70 via-black/45 to-black/20" />
-              <div className="relative flex h-full flex-col justify-end p-5 text-white md:p-8">
-                {slide.eyebrow ? <p className="text-xs uppercase tracking-[0.3em] text-white/70">{slide.eyebrow}</p> : null}
-                <h1 className="mt-2 max-w-3xl font-[var(--font-serif)] text-2xl font-semibold tracking-tight md:text-4xl">{slide.title}</h1>
-                {slide.description ? <p className="mt-3 max-w-2xl text-sm text-white/85 md:text-base">{slide.description}</p> : null}
-                <div className="mt-5 flex flex-wrap gap-3">
-                  {primaryHref && primaryLabel ? (
-                    <Link href={primaryHref} className="rounded-full bg-[color:var(--accent)] px-5 py-3 font-semibold text-black neon-hover">
-                      {primaryLabel}
-                    </Link>
-                  ) : null}
-                  {secondaryHref && secondaryLabel ? (
-                    <Link href={secondaryHref} className="rounded-full border border-white/35 px-5 py-3 neon-hover">
-                      {secondaryLabel}
-                    </Link>
-                  ) : null}
-                </div>
+          <div key={slides[index].title} className="absolute inset-0 transition-opacity duration-500 ease-out">
+            <Image
+              src={slides[index].image.src}
+              alt={slides[index].image.alt}
+              fill
+              sizes="(min-width: 1280px) 58vw, (min-width: 1024px) 56vw, 100vw"
+              className="object-cover transition duration-[1200ms] ease-out scale-105"
+              priority={index === 0}
+              loading={index === 0 ? "eager" : "lazy"}
+              fetchPriority={index === 0 ? "high" : "auto"}
+              quality={68}
+            />
+            <div className="absolute inset-0 bg-linear-to-r from-black/70 via-black/45 to-black/20" />
+            <div className="relative flex h-full flex-col justify-end p-5 text-white md:p-8">
+              {slides[index].eyebrow ? <p className="text-xs uppercase tracking-[0.3em] text-white/70">{slides[index].eyebrow}</p> : null}
+              <h1 className="mt-2 max-w-3xl font-[var(--font-serif)] text-2xl font-semibold tracking-tight md:text-4xl">{slides[index].title}</h1>
+              {slides[index].description ? <p className="mt-3 max-w-2xl text-sm text-white/85 md:text-base">{slides[index].description}</p> : null}
+              <div className="mt-5 flex flex-wrap gap-3">
+                {primaryHref && primaryLabel ? (
+                  <Link href={primaryHref} className="rounded-full bg-[color:var(--accent)] px-5 py-3 font-semibold text-black neon-hover">
+                    {primaryLabel}
+                  </Link>
+                ) : null}
+                {secondaryHref && secondaryLabel ? (
+                  <Link href={secondaryHref} className="rounded-full border border-white/35 px-5 py-3 neon-hover">
+                    {secondaryLabel}
+                  </Link>
+                ) : null}
               </div>
             </div>
-          ))}
+          </div>
         </div>
 
         <div className="hidden grid gap-2.5 p-3 md:p-4 lg:grid">
