@@ -30,25 +30,25 @@ export default function DashboardPage() {
             eyebrow: "Pemerintah Kabupaten Konawe Selatan",
             title: "Website resmi pemerintahan yang modern, cepat, dan mudah diakses.",
             description: "Portal utama untuk berita, profil daerah, data informasi, agenda, dan galeri publik dengan pendekatan SEO-first dan desain glossy neon.",
-            image: { src: "/image/box1.jpg", alt: "Visual utama Pemerintah Kabupaten Konawe Selatan" },
+            image: { src: "/image/box1.webp", alt: "Visual utama Pemerintah Kabupaten Konawe Selatan" },
           },
           {
             eyebrow: "Layanan Publik",
             title: "Informasi daerah dan layanan pemerintah dalam tampilan yang dinamis.",
             description: "Carousel visual yang menonjolkan identitas pemerintah daerah dan atmosfer Konawe Selatan.",
-            image: { src: "/image/box4.jpeg", alt: "Visual layanan publik Konawe Selatan" },
+            image: { src: "/image/box4.webp", alt: "Visual layanan publik Konawe Selatan" },
           },
           {
             eyebrow: "Pelayanan Publik",
             title: "Informasi daerah, layanan, dan dokumentasi publik dalam satu portal resmi.",
             description: "Tampilan dinamis yang menonjolkan identitas pemerintahan dan keindahan Konawe Selatan.",
-            image: { src: "/image/kantor1.jpeg", alt: "Kantor Pemerintah Kabupaten Konawe Selatan" },
+            image: { src: "/image/kantor1.webp", alt: "Kantor Pemerintah Kabupaten Konawe Selatan" },
           },
           {
             eyebrow: "Konawe Selatan",
             title: "Visual daerah dengan nuansa landscape yang lebih luas dan sinematik.",
             description: "Menampilkan wajah Konawe Selatan dengan komposisi yang lebih dramatis.",
-            image: { src: "/image/box3.jpg", alt: "Landscape Konawe Selatan" },
+            image: { src: "/image/box3.webp", alt: "Landscape Konawe Selatan" },
           },
         ]}
       />

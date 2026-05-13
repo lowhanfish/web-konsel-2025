@@ -11,7 +11,7 @@ export const profileDetails: ProfileDetail[] = [
     slug: "bupati",
     title: "Bupati",
     summary: "Profil lengkap Bupati Konawe Selatan.",
-    image: "/image/bupati.png",
+    image: "/image/bupati.webp",
     sections: [
       { title: "Keluarga", body: "Informasi keluarga inti dan latar belakang sosial." },
       { title: "Riwayat pendidikan", body: "Perjalanan pendidikan formal dan informal." },
@@ -23,7 +23,7 @@ export const profileDetails: ProfileDetail[] = [
     slug: "wakil-bupati",
     title: "Wakil Bupati",
     summary: "Profil lengkap Wakil Bupati Konawe Selatan.",
-    image: "/image/wakil.png",
+    image: "/image/wakil.webp",
     sections: [
       { title: "Keluarga", body: "Informasi keluarga inti dan latar belakang sosial." },
       { title: "Riwayat pendidikan", body: "Perjalanan pendidikan formal dan informal." },

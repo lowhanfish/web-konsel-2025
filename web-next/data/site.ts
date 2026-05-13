@@ -142,8 +142,8 @@ export const dashboardSummary = {
     },
   ],
   leaders: [
-    { name: "Irham Kalenggo, S.Sos., M.Si.", role: "Bupati", note: "Pimpinan daerah dan arah pembangunan", image: "/image/bupati.png" },
-    { name: "H. Wahyu Ade Pratama Imran", role: "Wakil Bupati", note: "Koordinasi program dan pendampingan kebijakan", image: "/image/wakil.png" },
+    { name: "Irham Kalenggo, S.Sos., M.Si.", role: "Bupati", note: "Pimpinan daerah dan arah pembangunan", image: "/image/bupati.webp" },
+    { name: "H. Wahyu Ade Pratama Imran", role: "Wakil Bupati", note: "Koordinasi program dan pendampingan kebijakan", image: "/image/wakil.webp" },
     { name: "H. Ichsan Porosi, ST., MTP", role: "Sekretaris Daerah", note: "Administrasi pemerintahan dan sinkronisasi OPD", image: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1200&q=80" },
   ],
   media: [

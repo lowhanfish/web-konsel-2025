@@ -4,9 +4,9 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 
 const topBanners = [
-  { src: "/image/bn1.jpeg", alt: "Banner Konawe Selatan" },
-  { src: "/image/bn1.jpeg", alt: "Banner Konawe Selatan" },
-  { src: "/image/bn1.jpeg", alt: "Banner Konawe Selatan" },
+  { src: "/image/bn1.webp", alt: "Banner Konawe Selatan" },
+  { src: "/image/bn1.webp", alt: "Banner Konawe Selatan" },
+  { src: "/image/bn1.webp", alt: "Banner Konawe Selatan" },
   // { src: "/image/header.png", alt: "Header Pemerintah Konawe Selatan" },
   // { src: "/image/bg3.jpg", alt: "Panorama Konawe Selatan" },
 ];
