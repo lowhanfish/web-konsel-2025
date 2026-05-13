@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import HeroCarousel from "@/components/ui/HeroCarousel";
-import TopBannerCarousel from "@/components/ui/TopBannerCarousel";
 import Card from "@/components/ui/Card";
 import Section from "@/components/ui/Section";
 import { dashboardSummary, quickLinks } from "@/data/site";
@@ -65,7 +64,7 @@ export default function DashboardPage() {
               <div className="absolute inset-0 bg-linear-to-t from-black/25 via-transparent to-transparent transition duration-300 group-hover:from-black/15" />
             </div>
             <div className="px-3 pb-3 pt-2 md:px-3 md:pb-3 md:pt-2">
-              <p className="text-xs uppercase tracking-[0.18em] text-(--muted)">{leader.role}</p>
+              <p className="text-xs uppercase tracking-[0.18em] text-[color:var(--muted)]">{leader.role}</p>
               <h2 className="mt-1 text-sm font-semibold leading-tight md:text-[15px] md:leading-snug">{leader.name}</h2>
             </div>
           </Card>
@@ -83,9 +82,9 @@ export default function DashboardPage() {
               <div className="relative h-28 w-full overflow-hidden rounded-xl">
                 <Image src={item.image} alt={item.title} fill sizes="(min-width: 1280px) 20vw, (min-width: 1024px) 33vw, 50vw" className="object-cover transition duration-500 group-hover:scale-105" />
               </div>
-              <span className="mt-4 text-xs uppercase tracking-[0.2em] text-(--muted)">{item.category}</span>
+              <span className="mt-4 text-xs uppercase tracking-[0.2em] text-[color:var(--muted)]">{item.category}</span>
               <h3
-                className="mt-3 text-base font-semibold leading-6 transition duration-300 group-hover:text-(--accent)"
+                className="mt-3 text-base font-semibold leading-6 transition duration-300 group-hover:text-[color:var(--accent)]"
                 title={item.title}
                 style={{
                   display: "-webkit-box",
@@ -96,7 +95,7 @@ export default function DashboardPage() {
               >
                 {index + 1}. {item.title}
               </h3>
-              <div className="mt-auto flex items-center justify-between gap-3 pt-4 text-xs text-(--muted)">
+              <div className="mt-auto flex items-center justify-between gap-3 pt-4 text-xs text-[color:var(--muted)]">
                 <span>{item.publishedBy}</span>
                 <span>{item.publishedAt}</span>
               </div>
@@ -111,7 +110,7 @@ export default function DashboardPage() {
             <Card key={item.title} className="group overflow-hidden p-0">
               <Image src={item.src} alt={item.title} width={1200} height={800} sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, 50vw" className="h-52 w-full object-cover transition duration-500 group-hover:scale-105" />
               <div className="p-4">
-                <p className="text-xs uppercase tracking-[0.2em] text-(--muted)">{item.type}</p>
+                <p className="text-xs uppercase tracking-[0.2em] text-[color:var(--muted)]">{item.type}</p>
                 <h3 className="mt-2 text-sm font-medium">{item.title}</h3>
               </div>
             </Card>
@@ -125,7 +124,7 @@ export default function DashboardPage() {
             <Card key={item.title} className="group overflow-hidden p-0">
               <Image src={item.src} alt={item.title} width={1200} height={800} sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, 50vw" className="h-52 w-full object-cover transition duration-500 group-hover:scale-105" />
               <div className="p-4">
-                <p className="text-xs uppercase tracking-[0.2em] text-(--muted)">{item.type}</p>
+                <p className="text-xs uppercase tracking-[0.2em] text-[color:var(--muted)]">{item.type}</p>
                 <h3 className="mt-2 text-sm font-medium">{item.title}</h3>
               </div>
             </Card>

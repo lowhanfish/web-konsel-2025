@@ -41,7 +41,7 @@ export default function HeroCarousel({
   return (
     <Card className="overflow-hidden p-0 ">
       <div className="grid gap-0 lg:grid-cols-[1.25fr_0.75fr]">
-        <div className="relative min-h-66 overflow-hidden md:min-h-76 lg:min-h-84">
+        <div className="relative min-h-[16.5rem] overflow-hidden md:min-h-[19rem] lg:min-h-[21rem]">
           {slides.map((slide, slideIndex) => (
             <div
               key={slide.title}
@@ -53,9 +53,10 @@ export default function HeroCarousel({
                 alt={slide.image.alt}
                 fill
                 sizes="(min-width: 1024px) 60vw, 100vw"
-                className={`object-cover transition duration-1400 ease-out ${slideIndex === index ? "scale-105" : "scale-110"}`}
+                className={`object-cover transition duration-[1400ms] ease-out ${slideIndex === index ? "scale-105" : "scale-110"}`}
                 priority={slideIndex === 0}
                 loading="eager"
+                fetchPriority={slideIndex === 0 ? "high" : "auto"}
               />
               <div className="absolute inset-0 bg-linear-to-r from-black/70 via-black/45 to-black/20" />
               <div className="relative flex h-full flex-col justify-end p-5 text-white md:p-8">
@@ -64,7 +65,7 @@ export default function HeroCarousel({
                 {slide.description ? <p className="mt-3 max-w-2xl text-sm text-white/85 md:text-base">{slide.description}</p> : null}
                 <div className="mt-5 flex flex-wrap gap-3">
                   {primaryHref && primaryLabel ? (
-                    <Link href={primaryHref} className="rounded-full bg-(--accent) px-5 py-3 font-semibold text-black neon-hover">
+                    <Link href={primaryHref} className="rounded-full bg-[color:var(--accent)] px-5 py-3 font-semibold text-black neon-hover">
                       {primaryLabel}
                     </Link>
                   ) : null}
@@ -93,15 +94,15 @@ export default function HeroCarousel({
                   <Image src={slide.image.src} alt={slide.image.alt} fill sizes="112px" className="object-cover" loading="eager" />
                 </div>
                 <div className="min-w-0 flex-1">
-                  {slide.eyebrow ? <p className="text-[10px] uppercase tracking-[0.2em] text-(--muted)">{slide.eyebrow}</p> : null}
-                  <p className="mt-1 line-clamp-2 text-left text-sm font-semibold text-(--fg)">{slide.title}</p>
+                  {slide.eyebrow ? <p className="text-[10px] uppercase tracking-[0.2em] text-[color:var(--muted)]">{slide.eyebrow}</p> : null}
+                  <p className="mt-1 line-clamp-2 text-left text-sm font-semibold text-[color:var(--fg)]">{slide.title}</p>
                 </div>
               </div>
             </button>
           ))}
         </div>
       </div>
-      <div className="flex items-center justify-center gap-2 border-t border-[--border] bg-(--card)/40 px-4 py-2.5">
+      <div className="flex items-center justify-center gap-2 border-t border-[--border] bg-[color:var(--card)]/40 px-4 py-2.5">
         {slides.map((slide, slideIndex) => (
           <button
             key={slide.title}

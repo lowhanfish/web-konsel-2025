@@ -5,7 +5,7 @@ export default function Footer() {
   const links = quickLinks.slice(0, 4);
 
   return (
-    <footer className="mt-12 border-t border-[--border] bg-(--card)]/70 backdrop-blur-xl">
+    <footer className="mt-12 border-t border-[--border] bg-[color:var(--card)]/70 backdrop-blur-xl">
       <div className="mx-auto grid max-w-7xl gap-6 px-4 py-8 sm:py-10 lg:grid-cols-[1.2fr_0.9fr_0.9fr]">
         <div className="space-y-4">
           <p className="text-xs uppercase tracking-[0.3em] text-[--muted]">Pemkab Konawe Selatan</p>

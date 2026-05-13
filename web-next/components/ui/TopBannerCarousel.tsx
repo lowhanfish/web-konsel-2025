@@ -22,14 +22,23 @@ export default function TopBannerCarousel() {
   }, []);
 
   return (
-    <div className="glass rounded-2xl bg-w md:rounded-3xl md:p-4">
-      <div className="relative aspect-1476/559 w-full overflow-hidden rounded-xl ring-1 ring-black/5 dark:ring-white/10 md:rounded-2xl">
+    <div className="glass rounded-2xl p-2 md:rounded-3xl md:p-4">
+      <div className="relative aspect-[1476/559] w-full overflow-hidden rounded-xl ring-1 ring-black/5 dark:ring-white/10 md:rounded-2xl">
         {topBanners.map((banner, idx) => (
           <div
             key={`${banner.src}-${idx}`}
             className={`absolute inset-0 transition-opacity duration-700 ${idx === index ? "opacity-100" : "pointer-events-none opacity-0"}`}
           >
-            <Image src={banner.src} alt={banner.alt} fill priority={idx === 0} className="object-cover" sizes="100vw" />
+            <Image
+              src={banner.src}
+              alt={banner.alt}
+              fill
+              priority={idx === 0}
+              loading={idx === 0 ? "eager" : "lazy"}
+              fetchPriority={idx === 0 ? "high" : "auto"}
+              className="object-cover"
+              sizes="100vw"
+            />
             <div className="absolute inset-0 bg-linear-to-r from-black/45 via-black/20 to-transparent" />
           </div>
         ))}
