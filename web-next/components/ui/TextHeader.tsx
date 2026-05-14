@@ -12,7 +12,7 @@ const TextHeader = () => {
                     className="h-[88px] w-[220px] object-contain opacity-85"
                     width={198}
                     height={231}
-                    sizes="(max-width: 768px) 150px, 220px"
+                    sizes="(max-width: 768px) 76px, 220px"
                     quality={70}
                 />
                 <p className="font-poppins text-[35px] font-extrabold text-gray-800 dark:text-yellow-300 [text-shadow:0_1px_0_rgba(255,255,255,0.65),0_2px_0_rgba(0,0,0,0.08),0_3px_0_rgba(0,0,0,0.08),0_4px_6px_rgba(0,0,0,0.25)] md:text-[55px]">

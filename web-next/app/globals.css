@@ -105,7 +105,7 @@ body {
     radial-gradient(circle at 0% -10%, rgba(var(--accent-rgb), 0.12), transparent 36%),
     radial-gradient(circle at 100% 0%, rgba(35, 99, 151, 0.2), transparent 32%),
     linear-gradient(180deg, rgba(1, 10, 18, 0.72), rgba(6, 15, 24, 0.88)),
-    url("/image/bg2.jpg");
+    url("/image/bg4.jpg");
   background-position: center;
   background-size: cover;
   background-attachment: fixed;

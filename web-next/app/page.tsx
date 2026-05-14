@@ -60,7 +60,7 @@ export default function DashboardPage() {
             className="group mx-auto w-full max-w-none overflow-hidden p-0 transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(245,224,29,0.18)] md:max-w-56 lg:max-w-54"
           >
             <div className="relative aspect-4/5 overflow-hidden md:aspect-3/4">
-              <Image src={leader.image} alt={leader.name} fill sizes="(min-width: 1024px) 14rem, (min-width: 768px) 14rem, 100vw" className="object-cover transition duration-500 ease-out group-hover:scale-[1.03]" />
+              <Image src={leader.image} alt={leader.name} fill sizes="(min-width: 768px) 224px, 45vw" className="object-cover transition duration-500 ease-out group-hover:scale-[1.03]" />
               <div className="absolute inset-0 bg-linear-to-t from-black/25 via-transparent to-transparent transition duration-300 group-hover:from-black/15" />
             </div>
             <div className="px-3 pb-3 pt-2 md:px-3 md:pb-3 md:pt-2">
@@ -80,7 +80,7 @@ export default function DashboardPage() {
             >
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(245,224,29,0.16),transparent_45%)] opacity-0 transition duration-300 group-hover:opacity-100" />
               <div className="relative h-28 w-full overflow-hidden rounded-xl">
-                <Image src={item.image} alt={item.title} fill sizes="(min-width: 1280px) 20vw, (min-width: 1024px) 33vw, 50vw" className="object-cover transition duration-500 group-hover:scale-105" />
+                <Image src={item.image} alt={item.title} fill sizes="(min-width: 1280px) 240px, (min-width: 1024px) 30vw, (min-width: 768px) 45vw, 92vw" className="object-cover transition duration-500 group-hover:scale-105" />
               </div>
               <span className="mt-4 text-xs uppercase tracking-[0.2em] text-[color:var(--muted)]">{item.category}</span>
               <h3
@@ -108,7 +108,7 @@ export default function DashboardPage() {
         <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
           {dashboardSummary.media.map((item) => (
             <Card key={item.title} className="group overflow-hidden p-0">
-              <Image src={item.src} alt={item.title} width={1200} height={800} sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, 50vw" className="h-52 w-full object-cover transition duration-500 group-hover:scale-105" />
+              <Image src={item.src} alt={item.title} width={1200} height={800} sizes="(min-width: 1280px) 360px, (min-width: 1024px) 32vw, (min-width: 640px) 48vw, 92vw" className="h-52 w-full object-cover transition duration-500 group-hover:scale-105" />
               <div className="p-4">
                 <p className="text-xs uppercase tracking-[0.2em] text-[color:var(--muted)]">{item.type}</p>
                 <h3 className="mt-2 text-sm font-medium">{item.title}</h3>
@@ -122,7 +122,7 @@ export default function DashboardPage() {
         <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-2">
           {dashboardSummary.videos.map((item) => (
             <Card key={item.title} className="group overflow-hidden p-0">
-              <Image src={item.src} alt={item.title} width={1200} height={800} sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, 50vw" className="h-52 w-full object-cover transition duration-500 group-hover:scale-105" />
+              <Image src={item.src} alt={item.title} width={1200} height={800} sizes="(min-width: 1280px) 520px, (min-width: 640px) 48vw, 92vw" className="h-52 w-full object-cover transition duration-500 group-hover:scale-105" />
               <div className="p-4">
                 <p className="text-xs uppercase tracking-[0.2em] text-[color:var(--muted)]">{item.type}</p>
                 <h3 className="mt-2 text-sm font-medium">{item.title}</h3>
