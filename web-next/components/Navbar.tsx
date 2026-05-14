@@ -235,7 +235,7 @@ function MobileMenu({
 
 export default function Navbar() {
   const pathname = usePathname();
-  const [theme, setTheme] = useState<"light" | "dark">("light");
+  const [theme, setTheme] = useState<"light" | "dark">("dark");
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const desktopMenu = useMemo(() => menu, []);
@@ -244,25 +244,14 @@ export default function Navbar() {
     if (typeof window === "undefined") return;
 
     const saved = localStorage.getItem("theme");
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
     const initialTheme =
       saved === "light" || saved === "dark"
         ? saved
-        : mediaQuery.matches
-          ? "dark"
-          : "light";
+        : "dark";
 
     queueMicrotask(() => setTheme(initialTheme));
 
-    const handleChange = (e: MediaQueryListEvent) => {
-      if (saved !== "light" && saved !== "dark") {
-        const newTheme = e.matches ? "dark" : "light";
-        setTheme(newTheme);
-      }
-    };
-
-    mediaQuery.addEventListener("change", handleChange);
-    return () => mediaQuery.removeEventListener("change", handleChange);
+    return undefined;
   }, []);
 
   useEffect(() => {
