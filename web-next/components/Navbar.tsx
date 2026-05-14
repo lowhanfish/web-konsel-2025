@@ -289,22 +289,17 @@ export default function Navbar() {
   };
 
   const shellClass =
-    theme === "dark"
-      ? "sticky top-0 z-50 border-b border-white/10 bg-slate-950/95 text-white shadow-[0_16px_50px_rgba(0,0,0,0.38)] backdrop-blur-3xl"
-      : "sticky top-0 z-50 border-b border-white/70 bg-white/92 text-slate-900 shadow-[0_12px_40px_rgba(15,23,42,0.08)] backdrop-blur-3xl";
+    "sticky top-0 z-50 border-b border-white/70 bg-white/92 text-slate-900 shadow-[0_12px_40px_rgba(15,23,42,0.08)] backdrop-blur-3xl dark:border-white/10 dark:bg-slate-950/95 dark:text-white dark:shadow-[0_16px_50px_rgba(0,0,0,0.38)]";
 
   const chipBase =
-    theme === "dark"
-      ? "border-white/10 bg-slate-950/75 text-white/90 hover:border-white/15 hover:bg-black/20 hover:text-white"
-      : "border-slate-200 bg-white/85 text-slate-900 hover:border-slate-300 hover:bg-white hover:text-slate-950";
+    "border-slate-200 bg-white/85 text-slate-900 hover:border-slate-300 hover:bg-white hover:text-slate-950 dark:border-white/10 dark:bg-slate-950/75 dark:text-white/90 dark:hover:border-white/15 dark:hover:bg-black/20 dark:hover:text-white";
 
   return (
     <header className={shellClass}>
       <nav className="mx-auto flex max-w-7xl items-center gap-3 px-4 py-3">
         <Link
           href="/"
-          className={`rounded-2xl border px-4 py-2 font-semibold tracking-[0.18em] neon-hover ${theme === "dark" ? "border-white/10 bg-black/30 text-white" : "border-slate-200 bg-white text-slate-900"
-            }`}
+          className="rounded-2xl border border-slate-200 bg-white px-4 py-2 font-semibold tracking-[0.18em] text-slate-900 neon-hover dark:border-white/10 dark:bg-black/30 dark:text-white"
         >
           KONSEL
         </Link>
@@ -317,9 +312,7 @@ export default function Navbar() {
                   type="button"
                   onClick={() => setOpenIndex((value) => (value === index ? null : index))}
                   className={`flex h-11 items-center gap-1 rounded-2xl border px-3 text-sm font-medium leading-none transition neon-hover ${openIndex === index || pathname === item.href || pathname.startsWith(`${item.href}/`)
-                    ? theme === "dark"
-                      ? "border-[color:var(--accent)] bg-black/30 text-white"
-                      : "border-[color:var(--accent)] bg-white text-slate-900"
+                    ? "border-[color:var(--accent)] bg-white text-slate-900 dark:bg-black/30 dark:text-white"
                     : chipBase
                     }`}
                 >
@@ -335,9 +328,7 @@ export default function Navbar() {
                 <Link
                   href={item.href}
                   className={`flex h-11 items-center rounded-2xl border px-3 text-sm font-medium leading-none transition neon-hover ${pathname === item.href || pathname.startsWith(`${item.href}/`)
-                    ? theme === "dark"
-                      ? "border-[color:var(--accent)] bg-black/30 text-white"
-                      : "border-[color:var(--accent)] bg-white text-slate-900"
+                    ? "border-[color:var(--accent)] bg-white text-slate-900 dark:bg-black/30 dark:text-white"
                     : chipBase
                     }`}
                 >
@@ -358,8 +349,7 @@ export default function Navbar() {
           <button
             type="button"
             onClick={() => setTheme((value) => (value === "dark" ? "light" : "dark"))}
-            className={`rounded-2xl border px-4 py-2 text-sm neon-hover ${theme === "dark" ? "border-white/10 bg-black/30 text-white" : "border-slate-200 bg-white text-slate-900"
-              }`}
+            className="rounded-2xl border border-slate-200 bg-white px-4 py-2 text-sm text-slate-900 neon-hover dark:border-white/10 dark:bg-black/30 dark:text-white"
             aria-label="toggle theme"
           >
             {theme === "dark" ? "Light Mode" : "Dark Mode"}
@@ -367,8 +357,7 @@ export default function Navbar() {
           <button
             type="button"
             onClick={() => setMobileOpen(true)}
-            className={`rounded-2xl border p-3 neon-hover lg:hidden ${theme === "dark" ? "border-white/10 bg-black/30 text-white" : "border-slate-200 bg-white text-slate-900"
-              }`}
+            className="rounded-2xl border border-slate-200 bg-white p-3 text-slate-900 neon-hover dark:border-white/10 dark:bg-black/30 dark:text-white lg:hidden"
             aria-label="open menu"
           >
             <GiHamburgerMenu />
