@@ -15,7 +15,7 @@ const TextHeader = () => {
                     sizes="(max-width: 768px) 150px, 220px"
                     quality={70}
                 />
-                <p className="font-poppins text-[35px] font-extrabold text-(--fg) dark:text-green-300 [text-shadow:0_1px_0_rgba(255,255,255,0.65),0_2px_0_rgba(0,0,0,0.08),0_3px_0_rgba(0,0,0,0.08),0_4px_6px_rgba(0,0,0,0.25)] md:text-[55px]">
+                <p className="font-poppins text-[35px] font-extrabold text-gray-800 dark:text-yellow-300 [text-shadow:0_1px_0_rgba(255,255,255,0.65),0_2px_0_rgba(0,0,0,0.08),0_3px_0_rgba(0,0,0,0.08),0_4px_6px_rgba(0,0,0,0.25)] md:text-[55px]">
                     Website Resmi
                 </p>
                 <p className='text-[28px] -mt-3 font-josefin'>Kabupaten Konawe Selatan</p>
